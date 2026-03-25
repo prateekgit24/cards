@@ -33,7 +33,7 @@ A real-time, online multiplayer card battle game inspired by the classic Ben 10 
 2. **Environment Variables:**
    Create a `.env` file in the root directory:
    ```env
-   PORT=3500
+   PORT=3000
    MONGODB_URI=mongodb://localhost:27017/cards
    ```
 
