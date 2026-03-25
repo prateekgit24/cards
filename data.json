@@ -1,0 +1,1010 @@
+[
+  {
+    "name": "Ben Tennyson (Human)",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/2/2e/Ben_10_Heroes_Glitch.png",
+    "parameters": {
+      "height": 5.5,
+      "strength": 40,
+      "power": 55,
+      "speed": 10,
+      "intelligence": 65,
+      "durability": 30
+    }
+  },
+  {
+    "name": "Gwen Tennyson (Human)",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/6/66/Dynamite_Gwen.png",
+    "parameters": {
+      "height": 5.4,
+      "strength": 35,
+      "power": 50,
+      "speed": 12,
+      "intelligence": 85,
+      "durability": 40
+    }
+  },
+  {
+    "name": "Gwen Tennyson (Anodite)",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/6/66/Dynamite_Gwen.png",
+    "parameters": {
+      "height": 5.4,
+      "strength": 70,
+      "power": 90,
+      "speed": 60,
+      "intelligence": 95,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Kevin Levin (Human)",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/f/f8/Reboot_Kevin.PNG",
+    "parameters": {
+      "height": 5.8,
+      "strength": 50,
+      "power": 60,
+      "speed": 10,
+      "intelligence": 70,
+      "durability": 45
+    }
+  },
+  {
+    "name": "Kevin Levin (Mutant)",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/f/f8/Reboot_Kevin.PNG",
+    "parameters": {
+      "height": 6.5,
+      "strength": 85,
+      "power": 80,
+      "speed": 20,
+      "intelligence": 70,
+      "durability": 85
+    }
+  },
+  {
+    "name": "Kevin Levin (Ultimate)",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/f/f8/Reboot_Kevin.PNG",
+    "parameters": {
+      "height": 6.5,
+      "strength": 95,
+      "power": 90,
+      "speed": 30,
+      "intelligence": 70,
+      "durability": 95
+    }
+  },
+  {
+    "name": "Grandpa Max",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/5/5d/Max_Standing.png",
+    "parameters": {
+      "height": 6,
+      "strength": 60,
+      "power": 50,
+      "speed": 10,
+      "intelligence": 80,
+      "durability": 60
+    }
+  },
+  {
+    "name": "Heatblast",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/6/61/Shadow_Heatblast.png",
+    "parameters": {
+      "height": 6.2,
+      "strength": 70,
+      "power": 85,
+      "speed": 20,
+      "intelligence": 60,
+      "durability": 75
+    }
+  },
+  {
+    "name": "Wildmutt",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/4/4f/Wildmutt_OV.png",
+    "parameters": {
+      "height": 6,
+      "strength": 75,
+      "power": 65,
+      "speed": 40,
+      "intelligence": 30,
+      "durability": 70
+    }
+  },
+  {
+    "name": "Diamondhead",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/1/10/Diamondhead_Carey_Cover.png",
+    "parameters": {
+      "height": 7,
+      "strength": 80,
+      "power": 88,
+      "speed": 15,
+      "intelligence": 60,
+      "durability": 90
+    }
+  },
+  {
+    "name": "XLR8",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/c/cb/XLR8_Carey_Cover.png",
+    "parameters": {
+      "height": 6,
+      "strength": 50,
+      "power": 75,
+      "speed": 300,
+      "intelligence": 65,
+      "durability": 60
+    }
+  },
+  {
+    "name": "Grey Matter",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/1/12/Grey_Matter_Carey_Cover.png",
+    "parameters": {
+      "height": 0.5,
+      "strength": 5,
+      "power": 90,
+      "speed": 5,
+      "intelligence": 98,
+      "durability": 10
+    }
+  },
+  {
+    "name": "Four Arms",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/a/ad/Billy-Arms.png",
+    "parameters": {
+      "height": 12,
+      "strength": 90,
+      "power": 80,
+      "speed": 15,
+      "intelligence": 55,
+      "durability": 85
+    }
+  },
+  {
+    "name": "Stinkfly",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/2/2d/Stinkfly_Dynamite.png",
+    "parameters": {
+      "height": 5,
+      "strength": 45,
+      "power": 70,
+      "speed": 50,
+      "intelligence": 60,
+      "durability": 50
+    }
+  },
+  {
+    "name": "Ripjaws",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/5/59/Ripjaws_AXT.png",
+    "parameters": {
+      "height": 6,
+      "strength": 70,
+      "power": 65,
+      "speed": 5,
+      "intelligence": 55,
+      "durability": 65
+    }
+  },
+  {
+    "name": "Upgrade",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/a/ae/Upgrade_Carey_Cover.png",
+    "parameters": {
+      "height": 7,
+      "strength": 60,
+      "power": 85,
+      "speed": 30,
+      "intelligence": 75,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Ghostfreak",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/6/6d/Ghostfreak_ov_official.png",
+    "parameters": {
+      "height": 7,
+      "strength": 60,
+      "power": 88,
+      "speed": 25,
+      "intelligence": 70,
+      "durability": 70
+    }
+  },
+  {
+    "name": "Cannonbolt",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/6/6c/Cannonbolt_Carey_Cover.png",
+    "parameters": {
+      "height": 8,
+      "strength": 85,
+      "power": 78,
+      "speed": 15,
+      "intelligence": 50,
+      "durability": 95
+    }
+  },
+  {
+    "name": "Wildvine",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/9/95/Shadow_Wildvine.png",
+    "parameters": {
+      "height": 7,
+      "strength": 65,
+      "power": 70,
+      "speed": 15,
+      "intelligence": 60,
+      "durability": 60
+    }
+  },
+  {
+    "name": "Spitter",
+    "imageUrl": "https://static.wikia.nocookie.net/ben10/images/f/fe/Spitter_Model.png",
+    "parameters": {
+      "height": 5,
+      "strength": 60,
+      "power": 70,
+      "speed": 10,
+      "intelligence": 55,
+      "durability": 60
+    }
+  },
+  {
+    "name": "Articguana",
+    "imageUrl": "https://placehold.co/150x225/2196F3/FFFFFF?text=Articguana",
+    "parameters": {
+      "height": 6.5,
+      "strength": 65,
+      "power": 75,
+      "speed": 15,
+      "intelligence": 60,
+      "durability": 70
+    }
+  },
+  {
+    "name": "Way Big",
+    "imageUrl": "https://placehold.co/150x225/C0C0C0/000000?text=Way+Big",
+    "parameters": {
+      "height": 120,
+      "strength": 99,
+      "power": 98,
+      "speed": 50,
+      "intelligence": 60,
+      "durability": 99
+    }
+  },
+  {
+    "name": "Echo Echo",
+    "imageUrl": "https://placehold.co/150x225/FF9800/FFFFFF?text=Echo+Echo",
+    "parameters": {
+      "height": 0.5,
+      "strength": 10,
+      "power": 78,
+      "speed": 10,
+      "intelligence": 70,
+      "durability": 20
+    }
+  },
+  {
+    "name": "Humungousaur",
+    "imageUrl": "https://placehold.co/150x225/708090/FFFFFF?text=Humungousaur",
+    "parameters": {
+      "height": 12,
+      "strength": 92,
+      "power": 85,
+      "speed": 18,
+      "intelligence": 60,
+      "durability": 90
+    }
+  },
+  {
+    "name": "Jetray",
+    "imageUrl": "https://placehold.co/150x225/00BFFF/000000?text=Jetray",
+    "parameters": {
+      "height": 6,
+      "strength": 60,
+      "power": 80,
+      "speed": 500,
+      "intelligence": 65,
+      "durability": 70
+    }
+  },
+  {
+    "name": "Big Chill",
+    "imageUrl": "https://cdna.artstation.com/p/assets/images/images/048/375/080/large/alyson-davi-friagem-fundo-escuro.jpg?1652105530",
+    "parameters": {
+      "height": 7,
+      "strength": 65,
+      "power": 85,
+      "speed": 40,
+      "intelligence": 70,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Chromastone",
+    "imageUrl": "https://placehold.co/150x225/FF69B4/FFFFFF?text=Chromastone",
+    "parameters": {
+      "height": 8,
+      "strength": 80,
+      "power": 90,
+      "speed": 15,
+      "intelligence": 65,
+      "durability": 92
+    }
+  },
+  {
+    "name": "Brainstorm",
+    "imageUrl": "https://placehold.co/150x225/FFC107/000000?text=Brainstorm",
+    "parameters": {
+      "height": 5,
+      "strength": 40,
+      "power": 88,
+      "speed": 10,
+      "intelligence": 95,
+      "durability": 50
+    }
+  },
+  {
+    "name": "Spidermonkey",
+    "imageUrl": "https://placehold.co/150x225/607D8B/FFFFFF?text=Spidermonkey",
+    "parameters": {
+      "height": 6,
+      "strength": 70,
+      "power": 75,
+      "speed": 30,
+      "intelligence": 60,
+      "durability": 70
+    }
+  },
+  {
+    "name": "Goop",
+    "imageUrl": "https://placehold.co/150x225/8BC34A/FFFFFF?text=Goop",
+    "parameters": {
+      "height": 10,
+      "strength": 60,
+      "power": 80,
+      "speed": 10,
+      "intelligence": 75,
+      "durability": 95
+    }
+  },
+  {
+    "name": "Alien X",
+    "imageUrl": "https://placehold.co/150x225/000000/FFFFFF?text=Alien+X",
+    "parameters": {
+      "height": 8,
+      "strength": 1000,
+      "power": 1000,
+      "speed": 1000,
+      "intelligence": 1000,
+      "durability": 1000
+    }
+  },
+  {
+    "name": "Lodestar",
+    "imageUrl": "https://placehold.co/150x225/FFC107/000000?text=Lodestar",
+    "parameters": {
+      "height": 7,
+      "strength": 70,
+      "power": 82,
+      "speed": 15,
+      "intelligence": 60,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Rath",
+    "imageUrl": "https://placehold.co/150x225/FF5722/FFFFFF?text=Rath",
+    "parameters": {
+      "height": 7,
+      "strength": 88,
+      "power": 75,
+      "speed": 25,
+      "intelligence": 40,
+      "durability": 85
+    }
+  },
+  {
+    "name": "Nanomech",
+    "imageUrl": "https://placehold.co/150x225/673AB7/FFFFFF?text=Nanomech",
+    "parameters": {
+      "height": 0.05,
+      "strength": 5,
+      "power": 68,
+      "speed": 5,
+      "intelligence": 70,
+      "durability": 15
+    }
+  },
+  {
+    "name": "Swampfire",
+    "imageUrl": "https://placehold.co/150x225/B22222/FFFFFF?text=Swampfire",
+    "parameters": {
+      "height": 8,
+      "strength": 75,
+      "power": 88,
+      "speed": 20,
+      "intelligence": 65,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Ultimate Swampfire",
+    "imageUrl": "https://placehold.co/150x225/B71C1C/FFFFFF?text=Ult+Swampfire",
+    "parameters": {
+      "height": 9,
+      "strength": 85,
+      "power": 95,
+      "speed": 25,
+      "intelligence": 70,
+      "durability": 90
+    }
+  },
+  {
+    "name": "Ultimate Humungousaur",
+    "imageUrl": "https://placehold.co/150x225/455A64/FFFFFF?text=Ult+Humungousaur",
+    "parameters": {
+      "height": 20,
+      "strength": 98,
+      "power": 92,
+      "speed": 25,
+      "intelligence": 65,
+      "durability": 97
+    }
+  },
+  {
+    "name": "Ultimate Big Chill",
+    "imageUrl": "https://placehold.co/150x225/B3E5FC/000000?text=Ult+Big+Chill",
+    "parameters": {
+      "height": 8,
+      "strength": 75,
+      "power": 93,
+      "speed": 50,
+      "intelligence": 75,
+      "durability": 90
+    }
+  },
+  {
+    "name": "Ultimate Spidermonkey",
+    "imageUrl": "https://placehold.co/150x225/757575/FFFFFF?text=Ult+Spidermonkey",
+    "parameters": {
+      "height": 7,
+      "strength": 80,
+      "power": 85,
+      "speed": 40,
+      "intelligence": 65,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Ultimate Echo Echo",
+    "imageUrl": "https://placehold.co/150x225/FF9800/FFFFFF?text=Ult+Echo+Echo",
+    "parameters": {
+      "height": 1,
+      "strength": 20,
+      "power": 90,
+      "speed": 15,
+      "intelligence": 75,
+      "durability": 30
+    }
+  },
+  {
+    "name": "Ultimate Cannonbolt",
+    "imageUrl": "https://placehold.co/150x225/FFEB3B/000000?text=Ult+Cannonbolt",
+    "parameters": {
+      "height": 9,
+      "strength": 90,
+      "power": 85,
+      "speed": 20,
+      "intelligence": 55,
+      "durability": 98
+    }
+  },
+  {
+    "name": "Ultimate Way Big",
+    "imageUrl": "https://placehold.co/150x225/E0E0E0/000000?text=Ult+Way+Big",
+    "parameters": {
+      "height": 150,
+      "strength": 100,
+      "power": 100,
+      "speed": 60,
+      "intelligence": 65,
+      "durability": 100
+    }
+  },
+  {
+    "name": "Ultimate Wildmutt",
+    "imageUrl": "https://placehold.co/150x225/795548/FFFFFF?text=Ult+Wildmutt",
+    "parameters": {
+      "height": 7,
+      "strength": 80,
+      "power": 70,
+      "speed": 50,
+      "intelligence": 35,
+      "durability": 75
+    }
+  },
+  {
+    "name": "Ultimate Rath",
+    "imageUrl": "https://placehold.co/150x225/D32F2F/FFFFFF?text=Ult+Rath",
+    "parameters": {
+      "height": 7.5,
+      "strength": 90,
+      "power": 80,
+      "speed": 30,
+      "intelligence": 45,
+      "durability": 90
+    }
+  },
+  {
+    "name": "Fasttrack",
+    "imageUrl": "https://placehold.co/150x225/009688/FFFFFF?text=Fasttrack",
+    "parameters": {
+      "height": 6.5,
+      "strength": 60,
+      "power": 65,
+      "speed": 250,
+      "intelligence": 60,
+      "durability": 60
+    }
+  },
+  {
+    "name": "Clockwork",
+    "imageUrl": "https://placehold.co/150x225/FFEB3B/000000?text=Clockwork",
+    "parameters": {
+      "height": 7,
+      "strength": 60,
+      "power": 95,
+      "speed": 10,
+      "intelligence": 85,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Jury Rigg",
+    "imageUrl": "https://placehold.co/150x225/FF9800/FFFFFF?text=Jury+Rigg",
+    "parameters": {
+      "height": 2,
+      "strength": 15,
+      "power": 70,
+      "speed": 10,
+      "intelligence": 90,
+      "durability": 20
+    }
+  },
+  {
+    "name": "Shocksquatch",
+    "imageUrl": "https://placehold.co/150x225/607D8B/FFFFFF?text=Shocksquatch",
+    "parameters": {
+      "height": 8,
+      "strength": 80,
+      "power": 85,
+      "speed": 20,
+      "intelligence": 60,
+      "durability": 85
+    }
+  },
+  {
+    "name": "Feedback",
+    "imageUrl": "https://placehold.co/150x225/9C27B0/FFFFFF?text=Feedback",
+    "parameters": {
+      "height": 6,
+      "strength": 65,
+      "power": 92,
+      "speed": 30,
+      "intelligence": 70,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Gravattack",
+    "imageUrl": "https://placehold.co/150x225/795548/FFFFFF?text=Gravattack",
+    "parameters": {
+      "height": 10,
+      "strength": 85,
+      "power": 90,
+      "speed": 5,
+      "intelligence": 75,
+      "durability": 95
+    }
+  },
+  {
+    "name": "Bloxx",
+    "imageUrl": "https://placehold.co/150x225/F44336/FFFFFF?text=Bloxx",
+    "parameters": {
+      "height": 8,
+      "strength": 78,
+      "power": 80,
+      "speed": 15,
+      "intelligence": 60,
+      "durability": 90
+    }
+  },
+  {
+    "name": "Crashhopper",
+    "imageUrl": "https://placehold.co/150x225/4CAF50/FFFFFF?text=Crashhopper",
+    "parameters": {
+      "height": 6,
+      "strength": 70,
+      "power": 75,
+      "speed": 60,
+      "intelligence": 55,
+      "durability": 70
+    }
+  },
+  {
+    "name": "Ball Weevil",
+    "imageUrl": "https://placehold.co/150x225/FFEB3B/000000?text=Ball+Weevil",
+    "parameters": {
+      "height": 2,
+      "strength": 10,
+      "power": 68,
+      "speed": 10,
+      "intelligence": 60,
+      "durability": 25
+    }
+  },
+  {
+    "name": "Walkatrout",
+    "imageUrl": "https://placehold.co/150x225/2196F3/FFFFFF?text=Walkatrout",
+    "parameters": {
+      "height": 1.5,
+      "strength": 5,
+      "power": 30,
+      "speed": 5,
+      "intelligence": 50,
+      "durability": 5
+    }
+  },
+  {
+    "name": "The Worst",
+    "imageUrl": "https://placehold.co/150x225/FF9800/FFFFFF?text=The+Worst",
+    "parameters": {
+      "height": 5,
+      "strength": 20,
+      "power": 25,
+      "speed": 5,
+      "intelligence": 50,
+      "durability": 100
+    }
+  },
+  {
+    "name": "Kickin Hawk",
+    "imageUrl": "https://placehold.co/150x225/B71C1C/FFFFFF?text=Kickin+Hawk",
+    "parameters": {
+      "height": 7,
+      "strength": 75,
+      "power": 70,
+      "speed": 30,
+      "intelligence": 55,
+      "durability": 70
+    }
+  },
+  {
+    "name": "Toepick",
+    "imageUrl": "https://placehold.co/150x225/455A64/FFFFFF?text=Toepick",
+    "parameters": {
+      "height": 8,
+      "strength": 70,
+      "power": 80,
+      "speed": 10,
+      "intelligence": 60,
+      "durability": 85
+    }
+  },
+  {
+    "name": "Astrodactyl",
+    "imageUrl": "https://placehold.co/150x225/F44336/FFFFFF?text=Astrodactyl",
+    "parameters": {
+      "height": 6.5,
+      "strength": 65,
+      "power": 82,
+      "speed": 100,
+      "intelligence": 65,
+      "durability": 70
+    }
+  },
+  {
+    "name": "Atomix",
+    "imageUrl": "https://placehold.co/150x225/FFEB3B/000000?text=Atomix",
+    "parameters": {
+      "height": 10,
+      "strength": 95,
+      "power": 99,
+      "speed": 30,
+      "intelligence": 90,
+      "durability": 98
+    }
+  },
+  {
+    "name": "Gutrot",
+    "imageUrl": "https://placehold.co/150x225/673AB7/FFFFFF?text=Gutrot",
+    "parameters": {
+      "height": 7,
+      "strength": 60,
+      "power": 85,
+      "speed": 10,
+      "intelligence": 80,
+      "durability": 70
+    }
+  },
+  {
+    "name": "Whampire",
+    "imageUrl": "https://placehold.co/150x225/B3E5FC/000000?text=Whampire",
+    "parameters": {
+      "height": 6.5,
+      "strength": 60,
+      "power": 80,
+      "speed": 20,
+      "intelligence": 70,
+      "durability": 75
+    }
+  },
+  {
+    "name": "Surge",
+    "imageUrl": "https://placehold.co/150x225/757575/FFFFFF?text=Surge",
+    "parameters": {
+      "height": 10,
+      "strength": 80,
+      "power": 88,
+      "speed": 40,
+      "intelligence": 70,
+      "durability": 85
+    }
+  },
+  {
+    "name": "Overflow",
+    "imageUrl": "https://placehold.co/150x225/009688/FFFFFF?text=Overflow",
+    "parameters": {
+      "height": 7,
+      "strength": 70,
+      "power": 80,
+      "speed": 15,
+      "intelligence": 60,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Shock Rock",
+    "imageUrl": "https://placehold.co/150x225/808080/FFFFFF?text=Shock+Rock",
+    "parameters": {
+      "height": 9,
+      "strength": 85,
+      "power": 90,
+      "speed": 15,
+      "intelligence": 65,
+      "durability": 90
+    }
+  },
+  {
+    "name": "Slapback",
+    "imageUrl": "https://placehold.co/150x225/607D8B/FFFFFF?text=Slapback",
+    "parameters": {
+      "height": 5,
+      "strength": 70,
+      "power": 75,
+      "speed": 10,
+      "intelligence": 55,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Vilgax (Base Form)",
+    "imageUrl": "https://placehold.co/150x225/000000/FF0000?text=Vilgax",
+    "parameters": {
+      "height": 10,
+      "strength": 90,
+      "power": 90,
+      "speed": 30,
+      "intelligence": 85,
+      "durability": 90
+    }
+  },
+  {
+    "name": "Vilgax (Dagon Powers)",
+    "imageUrl": "https://placehold.co/150x225/000000/FFFFFF?text=Vilgax+Dagon",
+    "parameters": {
+      "height": 12,
+      "strength": 98,
+      "power": 98,
+      "speed": 50,
+      "intelligence": 90,
+      "durability": 98
+    }
+  },
+  {
+    "name": "Zs'Skayr (Ghostfreak)",
+    "imageUrl": "https://placehold.co/150x225/808080/FFFFFF?text=Zs+Skayr",
+    "parameters": {
+      "height": 7,
+      "strength": 60,
+      "power": 95,
+      "speed": 40,
+      "intelligence": 85,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Dr. Animo",
+    "imageUrl": "https://placehold.co/150x225/4CAF50/FFFFFF?text=Dr+Animo",
+    "parameters": {
+      "height": 5.7,
+      "strength": 30,
+      "power": 70,
+      "speed": 8,
+      "intelligence": 95,
+      "durability": 20
+    }
+  },
+  {
+    "name": "Charmcaster",
+    "imageUrl": "https://placehold.co/150x225/9C27B0/FFFFFF?text=Charmcaster",
+    "parameters": {
+      "height": 5.6,
+      "strength": 30,
+      "power": 80,
+      "speed": 10,
+      "intelligence": 80,
+      "durability": 30
+    }
+  },
+  {
+    "name": "Hex",
+    "imageUrl": "https://placehold.co/150x225/673AB7/FFFFFF?text=Hex",
+    "parameters": {
+      "height": 6,
+      "strength": 35,
+      "power": 85,
+      "speed": 10,
+      "intelligence": 88,
+      "durability": 35
+    }
+  },
+  {
+    "name": "Forever Knight (Generic)",
+    "imageUrl": "https://placehold.co/150x225/B3E5FC/000000?text=FK",
+    "parameters": {
+      "height": 6,
+      "strength": 50,
+      "power": 45,
+      "speed": 10,
+      "intelligence": 40,
+      "durability": 50
+    }
+  },
+  {
+    "name": "Darkstar",
+    "imageUrl": "https://placehold.co/150x225/FF9800/FFFFFF?text=Darkstar",
+    "parameters": {
+      "height": 5.9,
+      "strength": 40,
+      "power": 78,
+      "speed": 10,
+      "intelligence": 70,
+      "durability": 40
+    }
+  },
+  {
+    "name": "Albedo (Human)",
+    "imageUrl": "https://placehold.co/150x225/E0E0E0/000000?text=Albedo",
+    "parameters": {
+      "height": 5.5,
+      "strength": 40,
+      "power": 60,
+      "speed": 10,
+      "intelligence": 90,
+      "durability": 30
+    }
+  },
+  {
+    "name": "Malware",
+    "imageUrl": "https://placehold.co/150x225/455A64/FFFFFF?text=Malware",
+    "parameters": {
+      "height": 8,
+      "strength": 85,
+      "power": 92,
+      "speed": 40,
+      "intelligence": 80,
+      "durability": 95
+    }
+  },
+  {
+    "name": "Khyber",
+    "imageUrl": "https://placehold.co/150x225/FF5722/FFFFFF?text=Khyber",
+    "parameters": {
+      "height": 6.5,
+      "strength": 70,
+      "power": 75,
+      "speed": 30,
+      "intelligence": 80,
+      "durability": 65
+    }
+  },
+  {
+    "name": "Eon",
+    "imageUrl": "https://placehold.co/150x225/795548/FFFFFF?text=Eon",
+    "parameters": {
+      "height": 6,
+      "strength": 70,
+      "power": 95,
+      "speed": 100,
+      "intelligence": 90,
+      "durability": 80
+    }
+  },
+  {
+    "name": "Maltruant",
+    "imageUrl": "https://placehold.co/150x225/9E9E9E/000000?text=Maltruant",
+    "parameters": {
+      "height": 10,
+      "strength": 95,
+      "power": 98,
+      "speed": 500,
+      "intelligence": 98,
+      "durability": 98
+    }
+  },
+  {
+    "name": "DNAlien (Generic)",
+    "imageUrl": "https://placehold.co/150x225/757575/FFFFFF?text=DNAlien",
+    "parameters": {
+      "height": 7,
+      "strength": 65,
+      "power": 55,
+      "speed": 15,
+      "intelligence": 30,
+      "durability": 60
+    }
+  },
+  {
+    "name": "Highbreed (Soldier)",
+    "imageUrl": "https://placehold.co/150x225/E0E0E0/000000?text=Highbreed",
+    "parameters": {
+      "height": 8,
+      "strength": 80,
+      "power": 70,
+      "speed": 20,
+      "intelligence": 50,
+      "durability": 75
+    }
+  },
+  {
+    "name": "Incursean (Soldier)",
+    "imageUrl": "https://placehold.co/150x225/FFEB3B/000000?text=Incursean",
+    "parameters": {
+      "height": 5,
+      "strength": 55,
+      "power": 50,
+      "speed": 15,
+      "intelligence": 40,
+      "durability": 55
+    }
+  },
+  {
+    "name": "Aggregor (Base Form)",
+    "imageUrl": "https://placehold.co/150x225/FF9800/FFFFFF?text=Aggregor",
+    "parameters": {
+      "height": 7,
+      "strength": 80,
+      "power": 85,
+      "speed": 20,
+      "intelligence": 80,
+      "durability": 85
+    }
+  },
+  {
+    "name": "Ultimate Aggregor",
+    "imageUrl": "https://placehold.co/150x225/B71C1C/FFFFFF?text=Ult+Aggregor",
+    "parameters": {
+      "height": 8,
+      "strength": 98,
+      "power": 97,
+      "speed": 50,
+      "intelligence": 90,
+      "durability": 98
+    }
+  },
+  {
+    "name": "Dagon",
+    "imageUrl": "https://placehold.co/150x225/9C27B0/FFFFFF?text=Dagon",
+    "parameters": {
+      "height": 1000,
+      "strength": 990,
+      "power": 999,
+      "speed": 900,
+      "intelligence": 995,
+      "durability": 999
+    }
+  }
+]

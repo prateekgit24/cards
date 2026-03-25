@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cards.cosmics.software/sitemap.xml

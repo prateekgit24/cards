@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben 10 — Omnitrix Chronicles</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --g: #00ff41;
+            --g2: #39ff14;
+            --gd: #007a1f;
+            --gdim: #003d0f;
+            --black: #020704;
+            --dark: #060e07;
+            --card: #080f09;
+            --white: #e8ffe8;
+            --muted: #4a7a52;
+            --glow: 0 0 20px #00ff41, 0 0 50px #00b32c66;
+            --glow2: 0 0 40px #00ff41, 0 0 80px #00ff4144;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        #cur {
+            position: fixed;
+            width: 16px;
+            height: 16px;
+            background: var(--g);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            box-shadow: var(--glow);
+            transition: transform .15s, background .2s;
+            mix-blend-mode: screen;
+        }
+
+        #cur2 {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid var(--g);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            opacity: .5;
+        }
+
+        #transformWipe {
+            position: fixed;
+            inset: 0;
+            z-index: 99000;
+            background: radial-gradient(circle at center, var(--g) 0%, #003310 40%, #000 100%);
+            transform: scale(0);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform .5s cubic-bezier(.4, 0, .2, 1), opacity .4s;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 255, 65, .06) 0%, transparent 70%), repeating-linear-gradient(0deg, rgba(0, 255, 65, .025) 0px, transparent 1px, transparent 39px, rgba(0, 255, 65, .025) 40px), repeating-linear-gradient(90deg, rgba(0, 255, 65, .025) 0px, transparent 1px, transparent 39px, rgba(0, 255, 65, .025) 40px);
+            pointer-events: none;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            background: rgba(2, 7, 4, .85);
+            border-bottom: 2px solid rgba(0, 255, 65, .2);
+            backdrop-filter: blur(16px);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .nav-logo-text {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: var(--g);
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px var(--g);
+        }
+
+        .nav-logo-sub {
+            font-size: .55rem;
+            letter-spacing: 5px;
+            color: var(--muted);
+            display: block;
+            margin-top: -3px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Orbitron', monospace;
+            font-size: .65rem;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color .3s, text-shadow .3s;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--g);
+            transform: scaleX(0);
+            transition: transform .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--g);
+            text-shadow: 0 0 12px var(--g);
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-btn {
+            font-family: 'Orbitron', monospace;
+            font-size: .65rem;
+            letter-spacing: 2px;
+            background: var(--g);
+            color: #000;
+            border: none;
+            padding: 10px 22px;
+            cursor: pointer;
+            font-weight: 900;
+            clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+            transition: box-shadow .3s, transform .2s;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(0, 255, 65, .4);
+        }
+
+        .nav-btn:hover {
+            box-shadow: var(--glow2);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 2rem;
+            overflow: hidden;
+        }
+
+        .hero-omni-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(700px, 90vw);
+            height: min(700px, 90vw);
+            opacity: .07;
+            animation: spinSlow 30s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes spinSlow {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .hero-omni-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 65, .12) 0%, transparent 70%);
+            animation: pulseGlow 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: .6;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        #lightning {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bolt {
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(180deg, transparent, var(--g), transparent);
+            animation: boltAnim linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes boltAnim {
+            0% {
+                opacity: 0;
+                transform: scaleY(0);
+            }
+
+            20% {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+
+            80% {
+                opacity: .5;
+            }
+
+            100% {
+                opacity: 0;
+                transform: scaleY(1) translateY(20px);
+            }
+        }
+
+        .hero-eyebrow {
+            font-family: 'Orbitron', monospace;
+            font-size: .7rem;
+            letter-spacing: 8px;
+            color: var(--g);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: riseIn .8s .3s forwards;
+            position: relative;
+        }
+
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '—';
+            color: var(--gd);
+            margin: 0 1rem;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2.5rem, 9vw, 8rem);
+            font-weight: 900;
+            line-height: .95;
+            color: #fff;
+            position: relative;
+            opacity: 0;
+            animation: riseIn .9s .5s forwards;
+            text-shadow: 0 0 80px rgba(0, 255, 65, .4), 0 2px 0 #000;
+            letter-spacing: -2px;
+        }
+
+        .hero-title .ben {
+            color: var(--g);
+            text-shadow: 0 0 30px var(--g), 0 0 60px var(--g), 0 0 100px #00ff4155;
+            display: inline-block;
+            animation: titleGlitch 6s infinite;
+        }
+
+        @keyframes titleGlitch {
+
+            0%,
+            88%,
+            100% {
+                text-shadow: 0 0 30px var(--g), 0 0 60px var(--g);
+                transform: none;
+            }
+
+            89% {
+                text-shadow: -3px 0 #ff0040, 3px 0 #00ffff;
+                transform: translateX(-2px);
+            }
+
+            90% {
+                text-shadow: 3px 0 #ff0040, -3px 0 #00ffff;
+                transform: translateX(2px);
+            }
+
+            91% {
+                text-shadow: 0 0 30px var(--g), 0 0 60px var(--g);
+                transform: none;
+            }
+
+            95% {
+                text-shadow: -2px 0 #ff0040;
+                transform: skewX(-5deg);
+            }
+
+            96% {
+                text-shadow: none;
+                transform: none;
+            }
+        }
+
+        .hero-title .ten {
+            display: inline-block;
+            -webkit-text-stroke: 2px var(--g);
+            color: transparent;
+            text-shadow: none;
+            animation: strokePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes strokePulse {
+
+            0%,
+            100% {
+                -webkit-text-stroke-color: var(--g);
+                filter: drop-shadow(0 0 10px var(--g));
+            }
+
+            50% {
+                -webkit-text-stroke-color: #fff;
+                filter: drop-shadow(0 0 30px #fff);
+            }
+        }
+
+        .hero-omnitrix {
+            margin: 2.5rem auto;
+            opacity: 0;
+            animation: riseIn .9s .7s forwards;
+            position: relative;
+        }
+
+        .omnitrix-svg {
+            filter: drop-shadow(0 0 20px var(--g)) drop-shadow(0 0 40px rgba(0, 255, 65, .5));
+            animation: omniPulse 2.5s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        @keyframes omniPulse {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 15px var(--g)) drop-shadow(0 0 30px rgba(0, 255, 65, .4));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 35px var(--g)) drop-shadow(0 0 70px rgba(0, 255, 65, .7)) drop-shadow(0 0 100px rgba(0, 255, 65, .3));
+            }
+        }
+
+        .omni-ring-spin {
+            animation: spinSlow 8s linear infinite;
+        }
+
+        @keyframes hbBob {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+            opacity: 0;
+            animation: riseIn .9s .9s forwards;
+        }
+
+        .hero-cta {
+            margin-top: 2.5rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: riseIn .9s 1.1s forwards;
+        }
+
+        .btn-hero {
+            font-family: 'Orbitron', monospace;
+            font-size: .72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 15px 35px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all .3s;
+            clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+            font-weight: 900;
+        }
+
+        .btn-primary {
+            background: var(--g);
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 255, 65, .5);
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--glow2);
+            transform: translateY(-3px) scale(1.03);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--g);
+            border: 2px solid var(--g);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 255, 65, .1);
+            box-shadow: 0 0 20px rgba(0, 255, 65, .3);
+            transform: translateY(-3px);
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .transform-banner {
+            position: relative;
+            z-index: 2;
+            background: var(--g);
+            padding: 14px 0;
+            overflow: hidden;
+            border-top: 3px solid #fff2;
+            border-bottom: 3px solid #fff2;
+        }
+
+        .transform-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg, transparent 0px, transparent 40px, rgba(0, 0, 0, .15) 40px, rgba(0, 0, 0, .15) 41px);
+        }
+
+        .tbanner-track {
+            display: flex;
+            gap: 0;
+            animation: bannerScroll 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .tbanner-item {
+            font-family: 'Orbitron', monospace;
+            font-size: .72rem;
+            letter-spacing: 3px;
+            color: #000;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-right: 2px solid rgba(0, 0, 0, .2);
+        }
+
+        @keyframes bannerScroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        section {
+            position: relative;
+            z-index: 2;
+        }
+
+        .sec-head {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .sec-eyebrow {
+            font-family: 'Orbitron', monospace;
+            font-size: .62rem;
+            letter-spacing: 6px;
+            color: var(--g);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .sec-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 40px rgba(0, 255, 65, .25);
+            line-height: 1.1;
+        }
+
+        .sec-title em {
+            color: var(--g);
+            font-style: normal;
+        }
+
+        .sec-line {
+            width: 80px;
+            height: 3px;
+            margin: 1.5rem auto 0;
+            background: linear-gradient(90deg, transparent, var(--g), transparent);
+        }
+
+        .featured {
+            padding: 7rem 4rem;
+        }
+
+        .featured-layout {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .post-card {
+            background: var(--card);
+            border: 1px solid rgba(0, 255, 65, .12);
+            border-radius: 4px;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+            transition: all .35s;
+            position: relative;
+        }
+
+        .post-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 65, .05) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity .35s;
+            z-index: 0;
+        }
+
+        .post-card:hover {
+            border-color: rgba(0, 255, 65, .5);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 255, 65, .12);
+        }
+
+        .post-card:hover::before {
+            opacity: 1;
+        }
+
+        .pc-hero {
+            grid-row: 1/3;
+        }
+
+        .pc-art {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pc-hero .pc-art {
+            aspect-ratio: 4/3;
+        }
+
+        .pc-art {
+            aspect-ratio: 16/9;
+        }
+
+        .art-heatblast {
+            background: radial-gradient(ellipse at 50% 120%, #ff8c00 0%, #ff3300 25%, #8b1a00 55%, #1a0300 80%, #0a0200 100%);
+        }
+
+        .art-xlr8 {
+            background: linear-gradient(135deg, #000510 0%, #001a4d 40%, #000820 100%);
+            overflow: hidden;
+        }
+
+        .xlr8-track {
+            position: absolute;
+            bottom: 30%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00aaff, var(--g), transparent);
+            animation: xlr8zoom .4s linear infinite;
+        }
+
+        .xlr8-track2 {
+            bottom: 25%;
+            animation-delay: .1s;
+            opacity: .5;
+        }
+
+        .xlr8-track3 {
+            bottom: 35%;
+            animation-delay: .2s;
+            opacity: .3;
+        }
+
+        @keyframes xlr8zoom {
+            0% {
+                transform: scaleX(3) translateX(-100%);
+            }
+
+            100% {
+                transform: scaleX(3) translateX(100%);
+            }
+        }
+
+        .xlr8-blur {
+            position: absolute;
+            width: 120px;
+            height: 60px;
+            background: linear-gradient(90deg, transparent, rgba(0, 150, 255, .4), rgba(0, 255, 65, .6), transparent);
+            border-radius: 50%;
+            animation: xlr8move .4s linear infinite;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes xlr8move {
+            0% {
+                left: -150px;
+            }
+
+            100% {
+                left: calc(100% + 150px);
+            }
+        }
+
+        .art-dh {
+            background: radial-gradient(ellipse at 40% 30%, #00ffee22 0%, transparent 60%), linear-gradient(160deg, #001820 0%, #003344 40%, #000d15 100%);
+        }
+
+        .dh-crystal {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(0, 200, 255, .6), rgba(0, 100, 200, .8));
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: dhFloat ease-in-out infinite;
+        }
+
+        @keyframes dhFloat {
+
+            0%,
+            100% {
+                transform: rotate(0deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(180deg) scale(1.1);
+            }
+        }
+
+        .dh-crystal:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 20%;
+            top: 20%;
+            animation-duration: 3s;
+        }
+
+        .dh-crystal:nth-child(2) {
+            width: 50px;
+            height: 50px;
+            right: 25%;
+            top: 30%;
+            animation-duration: 4s;
+            animation-delay: .5s;
+            opacity: .7;
+        }
+
+        .dh-crystal:nth-child(3) {
+            width: 35px;
+            height: 35px;
+            left: 40%;
+            bottom: 20%;
+            animation-duration: 5s;
+            animation-delay: 1s;
+            opacity: .5;
+        }
+
+        .art-gf {
+            background: radial-gradient(ellipse at center, #200030 0%, #0d0020 50%, #04000a 100%);
+        }
+
+        .gf-tentacle {
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(180deg, rgba(180, 100, 255, .8), transparent);
+            border-radius: 2px;
+            transform-origin: top center;
+            animation: gfWave ease-in-out infinite;
+        }
+
+        @keyframes gfWave {
+
+            0%,
+            100% {
+                transform: rotate(var(--base)) scaleY(1);
+            }
+
+            50% {
+                transform: rotate(calc(var(--base) + 20deg)) scaleY(1.2);
+            }
+        }
+
+        .gf-eye {
+            position: absolute;
+            width: 20px;
+            height: 8px;
+            background: #cc88ff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #aa44ff, 0 0 30px #8800ff;
+            animation: gfEyeBlink 3s ease-in-out infinite;
+        }
+
+        @keyframes gfEyeBlink {
+
+            0%,
+            90%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            92%,
+            98% {
+                transform: scaleY(.1);
+            }
+        }
+
+        .pc-body {
+            padding: 1.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pc-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: .8rem;
+        }
+
+        .pc-tag {
+            font-family: 'Orbitron', monospace;
+            font-size: .58rem;
+            letter-spacing: 2px;
+            color: var(--g);
+            text-transform: uppercase;
+            background: rgba(0, 255, 65, .1);
+            border: 1px solid rgba(0, 255, 65, .3);
+            padding: 3px 10px;
+            clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+        }
+
+        .pc-date {
+            font-size: .78rem;
+            color: var(--muted);
+        }
+
+        .pc-title {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.35;
+            margin-bottom: .7rem;
+            transition: color .3s;
+        }
+
+        .post-card:hover .pc-title {
+            color: var(--g);
+        }
+
+        .pc-hero .pc-title {
+            font-size: 1.5rem;
+        }
+
+        .pc-title {
+            font-size: 1rem;
+        }
+
+        .pc-excerpt {
+            font-size: .88rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .pc-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.4rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(0, 255, 65, .1);
+        }
+
+        .pc-author {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .author-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--gdim);
+            border: 1.5px solid var(--g);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .75rem;
+        }
+
+        .author-nm {
+            font-size: .78rem;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .read-min {
+            font-family: 'Orbitron', monospace;
+            font-size: .55rem;
+            color: var(--muted);
+            letter-spacing: 1px;
+        }
+
+        .alien-profiles {
+            padding: 7rem 4rem;
+            background: linear-gradient(180deg, transparent, rgba(0, 255, 65, .03), transparent);
+        }
+
+        .aliens-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .alien-tile {
+            background: var(--card);
+            border: 1px solid rgba(0, 255, 65, .1);
+            border-radius: 4px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all .35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alien-tile::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--tile-color, var(--g));
+            transform: scaleX(0);
+            transition: transform .35s;
+        }
+
+        .alien-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--tile-color, var(--g));
+        }
+
+        .alien-tile:hover::after {
+            transform: scaleX(1);
+        }
+
+        .tile-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 100%, var(--tile-glow, .1) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity .35s;
+            pointer-events: none;
+        }
+
+        .alien-tile:hover .tile-glow {
+            opacity: 1;
+        }
+
+        .tile-icon {
+            display: block;
+            margin: 0 auto 1rem;
+            width: 70px;
+            height: 70px;
+            transition: transform .35s, filter .35s;
+        }
+
+        .alien-tile:hover .tile-icon {
+            transform: scale(1.15) translateY(-4px);
+        }
+
+        .tile-name {
+            font-family: 'Orbitron', monospace;
+            font-size: .75rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: .4rem;
+        }
+
+        .tile-species {
+            font-size: .72rem;
+            color: var(--muted);
+        }
+
+        .tile-power-bar {
+            margin-top: .9rem;
+            height: 2px;
+            background: rgba(255, 255, 255, .08);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .tile-power-fill {
+            height: 100%;
+            background: var(--tile-color, var(--g));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .7s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .watchface-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .watchface-hr {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, .3));
+        }
+
+        .watchface-hr.r {
+            background: linear-gradient(90deg, rgba(0, 255, 65, .3), transparent);
+        }
+
+        .stats {
+            padding: 5rem 4rem;
+            background: var(--card);
+            border-top: 1px solid rgba(0, 255, 65, .1);
+            border-bottom: 1px solid rgba(0, 255, 65, .1);
+        }
+
+        .stats-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat {
+            position: relative;
+        }
+
+        .stat+.stat::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 0;
+            height: 70%;
+            width: 1px;
+            background: rgba(0, 255, 65, .12);
+        }
+
+        .stat-n {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--g);
+            text-shadow: var(--glow);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-l {
+            font-family: 'Orbitron', monospace;
+            font-size: .58rem;
+            letter-spacing: 4px;
+            color: var(--muted);
+            margin-top: .6rem;
+            text-transform: uppercase;
+        }
+
+        .blog {
+            padding: 7rem 4rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .newsletter {
+            padding: 8rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nl-omni {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(ellipse, rgba(0, 255, 65, .05) 0%, transparent 60%);
+            pointer-events: none;
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        .nl-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            border: 1px solid rgba(0, 255, 65, .08);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: ringExpand 4s linear infinite;
+        }
+
+        .nl-ring2 {
+            animation-delay: 2s;
+        }
+
+        @keyframes ringExpand {
+            0% {
+                transform: translate(-50%, -50%) scale(.5);
+                opacity: .6;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        .nl-inner {
+            max-width: 540px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nl-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 40px rgba(0, 255, 65, .3);
+        }
+
+        .nl-title em {
+            color: var(--g);
+            font-style: normal;
+        }
+
+        .nl-sub {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            font-size: .95rem;
+        }
+
+        .nl-form {
+            display: flex;
+            border: 2px solid rgba(0, 255, 65, .3);
+            border-radius: 2px;
+            overflow: hidden;
+            transition: border-color .3s, box-shadow .3s;
+        }
+
+        .nl-form:focus-within {
+            border-color: var(--g);
+            box-shadow: 0 0 25px rgba(0, 255, 65, .2);
+        }
+
+        .nl-input {
+            flex: 1;
+            background: rgba(0, 255, 65, .04);
+            border: none;
+            outline: none;
+            padding: 16px 20px;
+            color: var(--white);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+        }
+
+        .nl-input::placeholder {
+            color: var(--muted);
+        }
+
+        .nl-btn {
+            font-family: 'Orbitron', monospace;
+            font-size: .65rem;
+            letter-spacing: 2px;
+            background: var(--g);
+            color: #000;
+            border: none;
+            padding: 16px 28px;
+            cursor: pointer;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: background .3s, box-shadow .3s;
+        }
+
+        .nl-btn:hover {
+            background: #39ff14;
+            box-shadow: 0 0 20px rgba(0, 255, 65, .5);
+        }
+
+        footer {
+            padding: 4rem;
+            border-top: 1px solid rgba(0, 255, 65, .12);
+            position: relative;
+            z-index: 2;
+        }
+
+        .foot-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .foot-brand-desc {
+            margin-top: 1rem;
+            font-size: .85rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .foot-h {
+            font-family: 'Orbitron', monospace;
+            font-size: .6rem;
+            letter-spacing: 4px;
+            color: var(--g);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .foot-ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+        }
+
+        .foot-ul a {
+            font-size: .9rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .3s, padding-left .3s;
+        }
+
+        .foot-ul a:hover {
+            color: var(--g);
+            padding-left: 8px;
+        }
+
+        .foot-bottom {
+            max-width: 1280px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 255, 65, .07);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .foot-copy {
+            font-family: 'Orbitron', monospace;
+            font-size: .55rem;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+
+        #particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .spark {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--g);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--g);
+            animation: sparkFloat linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes sparkFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: .8;
+            }
+
+            90% {
+                opacity: .4;
+            }
+
+            100% {
+                transform: translateY(-20px) translateX(var(--dx)) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .sr {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .sr.vis {
+            opacity: 1;
+            transform: none;
+        }
+
+        .card-badge-custom {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            font-family: 'Orbitron', monospace;
+            font-size: .58rem;
+            letter-spacing: 2px;
+            padding: 5px 14px;
+            clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+            z-index: 3;
+        }
+
+        @media(max-width:1024px) {
+            .featured-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .pc-hero {
+                grid-row: auto;
+            }
+
+            .aliens-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .stats-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .foot-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:700px) {
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .featured,
+            .alien-profiles,
+            .blog,
+            .newsletter,
+            footer {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .aliens-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="cur"></div>
+    <div id="cur2"></div>
+    <div id="particles"></div>
+    <div id="transformWipe"></div>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#" class="nav-logo">
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                <circle cx="22" cy="22" r="21" stroke="#00ff41" stroke-width="2" fill="none" />
+                <circle cx="22" cy="22" r="17" stroke="#007a1f" stroke-width="1" fill="none" stroke-dasharray="4 2"
+                    style="animation:spinSlow 6s linear infinite reverse" />
+                <path d="M22 5 L36 13 L36 31 L22 39 L8 31 L8 13 Z" fill="#003d0f" stroke="#00ff41" stroke-width="1.5" />
+                <path d="M22 11 L31 16.5 L31 27.5 L22 33 L13 27.5 L13 16.5 Z" fill="#001a07" stroke="#00b32c"
+                    stroke-width="1" />
+                <circle cx="22" cy="22" r="7" stroke="#00ff41" stroke-width="2" fill="#001205" />
+                <path d="M17.5 17.5 L26.5 17.5 L22 22 L26.5 26.5 L17.5 26.5 L22 22 Z" fill="#00ff41" />
+                <circle cx="22" cy="22" r="2.5" fill="#ffffff" opacity=".8" />
+            </svg>
+            <div>
+                <div class="nav-logo-text">OMNITRIX</div>
+                <span class="nav-logo-sub">Chronicles</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#featured">Featured</a></li>
+            <li><a href="#aliens">Alien Codex</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#newsletter">Subscribe</a></li>
+        </ul>
+        <button class="nav-btn" onclick="doTransform()">IT'S HERO TIME</button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <svg class="hero-omni-bg" viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="98" stroke="#00ff41" stroke-width="2" />
+            <circle cx="100" cy="100" r="88" stroke="#00ff41" stroke-width="1" stroke-dasharray="6 3" />
+            <circle cx="100" cy="100" r="78" stroke="#00ff41" stroke-width=".5" />
+            <path d="M100 20 L172 60 L172 140 L100 180 L28 140 L28 60 Z" stroke="#00ff41" stroke-width="1.5"
+                fill="none" />
+            <path d="M100 35 L158 68 L158 132 L100 165 L42 132 L42 68 Z" stroke="#00ff41" stroke-width="1"
+                fill="none" />
+            <circle cx="100" cy="100" r="35" stroke="#00ff41" stroke-width="2" fill="none" />
+            <circle cx="100" cy="100" r="25" fill="#00ff41" opacity=".3" />
+            <path d="M82 82 L118 82 L100 100 L118 118 L82 118 L100 100 Z" fill="#00ff41" />
+            <g stroke="#00ff41" stroke-width="1" opacity=".5">
+                <line x1="100" y1="2" x2="100" y2="12" />
+                <line x1="100" y1="188" x2="100" y2="198" />
+                <line x1="2" y1="100" x2="12" y2="100" />
+                <line x1="188" y1="100" x2="198" y2="100" />
+                <line x1="31" y1="31" x2="38" y2="38" />
+                <line x1="162" y1="162" x2="169" y2="169" />
+                <line x1="31" y1="169" x2="38" y2="162" />
+                <line x1="162" y1="38" x2="169" y2="31" />
+            </g>
+        </svg>
+        <div class="hero-omni-glow"></div>
+        <div id="lightning"></div>
+
+        <p class="hero-eyebrow">It's Hero Time</p>
+        <h1 class="hero-title"><span class="ben">BEN</span>&nbsp;<span class="ten">10</span></h1>
+
+        <!-- HERO OMNITRIX -->
+        <div class="hero-omnitrix">
+            <svg class="omnitrix-svg" width="150" height="150" viewBox="0 0 150 150" fill="none" onclick="doTransform()"
+                title="Click to transform!">
+                <g class="omni-ring-spin">
+                    <circle cx="75" cy="75" r="72" stroke="#00ff41" stroke-width="1.5" stroke-dasharray="8 4"
+                        opacity=".5" />
+                    <circle cx="75" cy="75" r="65" stroke="#007a1f" stroke-width="1" stroke-dasharray="3 6"
+                        opacity=".4" />
+                </g>
+                <circle cx="75" cy="75" r="58" stroke="#00ff41" stroke-width="3" fill="none" />
+                <path d="M75 22 L118 47 L118 103 L75 128 L32 103 L32 47 Z" fill="#003d0f" stroke="#00ff41"
+                    stroke-width="2.5" />
+                <path d="M75 33 L110 53 L110 97 L75 117 L40 97 L40 53 Z" fill="#001a07" stroke="#00b32c"
+                    stroke-width="1.5" opacity=".8" />
+                <circle cx="75" cy="75" r="28" stroke="#00ff41" stroke-width="2.5" fill="#001205" />
+                <circle cx="75" cy="75" r="22" stroke="#00b32c" stroke-width="1" fill="none" />
+                <path d="M60 60 L90 60 L75 75 L90 90 L60 90 L75 75 Z" fill="#00ff41" />
+                <circle cx="75" cy="75" r="10" fill="rgba(0,255,65,.25)" />
+                <circle cx="75" cy="75" r="5" fill="#ffffff" opacity=".8" />
+                <g stroke="#00ff41" stroke-width="2" opacity=".7">
+                    <line x1="75" y1="17" x2="75" y2="26" />
+                    <line x1="75" y1="124" x2="75" y2="133" />
+                    <line x1="17" y1="75" x2="26" y2="75" />
+                    <line x1="124" y1="75" x2="133" y2="75" />
+                    <line x1="33" y1="33" x2="40" y2="40" />
+                    <line x1="110" y1="110" x2="117" y2="117" />
+                    <line x1="33" y1="117" x2="40" y2="110" />
+                    <line x1="110" y1="40" x2="117" y2="33" />
+                </g>
+                <rect x="7" y="65" width="9" height="20" rx="2" fill="#003d0f" stroke="#00ff41" stroke-width="1.5" />
+                <rect x="134" y="65" width="9" height="20" rx="2" fill="#003d0f" stroke="#00ff41" stroke-width="1.5" />
+            </svg>
+        </div>
+
+        <p class="hero-sub">The definitive Ben 10 blog — alien deep dives, lore breakdowns, episode analysis, and the
+            complete Omnitrix database. Ready to transform?</p>
+        <div class="hero-cta">
+            <a href="#featured" class="btn-hero btn-primary">Explore Now</a>
+            <a href="#aliens" class="btn-hero btn-outline">Alien Codex</a>
+        </div>
+    </section>
+
+    <!-- BANNER -->
+    <div class="transform-banner">
+        <div class="tbanner-track" id="tbanner">
+            <span class="tbanner-item">🔥 HEATBLAST</span><span class="tbanner-item">💎 DIAMONDHEAD</span>
+            <span class="tbanner-item">⚡ XLR8</span><span class="tbanner-item">💪 FOUR ARMS</span>
+            <span class="tbanner-item">👻 GHOSTFREAK</span><span class="tbanner-item">🤖 UPGRADE</span>
+            <span class="tbanner-item">🐾 WILDMUTT</span><span class="tbanner-item">🧠 GREY MATTER</span>
+            <span class="tbanner-item">🦟 STINKFLY</span><span class="tbanner-item">🐟 RIPJAWS</span>
+            <span class="tbanner-item">🔥 HEATBLAST</span><span class="tbanner-item">💎 DIAMONDHEAD</span>
+            <span class="tbanner-item">⚡ XLR8</span><span class="tbanner-item">💪 FOUR ARMS</span>
+            <span class="tbanner-item">👻 GHOSTFREAK</span><span class="tbanner-item">🤖 UPGRADE</span>
+            <span class="tbanner-item">🐾 WILDMUTT</span><span class="tbanner-item">🧠 GREY MATTER</span>
+            <span class="tbanner-item">🦟 STINKFLY</span><span class="tbanner-item">🐟 RIPJAWS</span>
+        </div>
+    </div>
+
+    <!-- FEATURED -->
+    <section class="featured" id="featured">
+        <div class="sec-head sr">
+            <span class="sec-eyebrow">Top Transmissions</span>
+            <h2 class="sec-title">Featured <em>Posts</em></h2>
+            <div class="sec-line"></div>
+        </div>
+        <div class="featured-layout">
+
+            <!-- BIG CARD: Heatblast -->
+            <a href="#" class="post-card pc-hero sr">
+                <div class="pc-art art-heatblast" style="aspect-ratio:4/3">
+                    <div
+                        style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8%;">
+                        <!-- Animated flame glow -->
+                        <div
+                            style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:280px;height:120px;background:radial-gradient(ellipse,rgba(255,100,0,.6) 0%,transparent 70%);animation:gfEyeBlink 0.2s ease-in-out infinite alternate;">
+                        </div>
+                        <!-- Heatblast SVG -->
+                        <svg width="140" height="200" viewBox="0 0 140 200" fill="none"
+                            style="animation:hbBob 2s ease-in-out infinite;position:relative;z-index:2;">
+                            <ellipse cx="70" cy="118" rx="34" ry="42" fill="#cc3300" opacity=".95" />
+                            <ellipse cx="70" cy="108" rx="26" ry="32" fill="#ff4400" />
+                            <ellipse cx="55" cy="103" rx="11" ry="13" fill="#ff6600" opacity=".85" />
+                            <ellipse cx="85" cy="103" rx="11" ry="13" fill="#ff6600" opacity=".85" />
+                            <path d="M58 96 Q63 108 58 120 Q66 113 70 126 Q74 113 82 120 Q77 108 82 96" stroke="#ff9900"
+                                stroke-width="1.5" fill="none" opacity=".75" />
+                            <ellipse cx="38" cy="112" rx="9" ry="21" fill="#cc2200" transform="rotate(-15 38 112)" />
+                            <ellipse cx="102" cy="112" rx="9" ry="21" fill="#cc2200" transform="rotate(15 102 112)" />
+                            <rect x="28" y="128" width="17" height="15" rx="5" fill="#882200" />
+                            <rect x="95" y="128" width="17" height="15" rx="5" fill="#882200" />
+                            <rect x="50" y="155" width="15" height="30" rx="5" fill="#aa2200" />
+                            <rect x="75" y="155" width="15" height="30" rx="5" fill="#aa2200" />
+                            <ellipse cx="70" cy="72" rx="30" ry="34" fill="#ff5500" />
+                            <ellipse cx="59" cy="67" rx="7" ry="8" fill="#fff" opacity=".85" />
+                            <ellipse cx="81" cy="67" rx="7" ry="8" fill="#fff" opacity=".85" />
+                            <ellipse cx="59" cy="68" rx="3.5" ry="4.5" fill="#000" />
+                            <ellipse cx="81" cy="68" rx="3.5" ry="4.5" fill="#000" />
+                            <path d="M48 50 Q52 22 70 34 Q74 12 80 28 Q84 8 90 32 Q94 50 88 56" fill="#ff6600"
+                                opacity=".92" />
+                            <path d="M53 44 Q57 20 70 30 Q75 14 80 28" fill="#ffaa00" opacity=".75" />
+                            <rect x="28" y="125" width="15" height="9" rx="2" fill="#003d0f" stroke="#00ff41"
+                                stroke-width="1.2" />
+                            <circle cx="35.5" cy="129.5" r="3.5" fill="#00ff41" />
+                        </svg>
+                        <!-- Rising embers -->
+                        <svg style="position:absolute;inset:0;pointer-events:none" width="100%" height="100%">
+                            <circle cx="30%" cy="60%" r="3" fill="#ff8800" opacity=".7">
+                                <animate attributeName="cy" values="60%;10%" dur="2s" repeatCount="indefinite" />
+                                <animate attributeName="opacity" values=".7;0" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="50%" cy="70%" r="2" fill="#ffcc00" opacity=".6">
+                                <animate attributeName="cy" values="70%;15%" dur="1.5s" begin=".3s"
+                                    repeatCount="indefinite" />
+                                <animate attributeName="opacity" values=".6;0" dur="1.5s" begin=".3s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="70%" cy="65%" r="2.5" fill="#ff6600" opacity=".8">
+                                <animate attributeName="cy" values="65%;5%" dur="2.2s" begin=".7s"
+                                    repeatCount="indefinite" />
+                                <animate attributeName="opacity" values=".8;0" dur="2.2s" begin=".7s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="20%" cy="75%" r="2" fill="#ffaa00" opacity=".5">
+                                <animate attributeName="cy" values="75%;20%" dur="1.8s" begin="1s"
+                                    repeatCount="indefinite" />
+                                <animate attributeName="opacity" values=".5;0" dur="1.8s" begin="1s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                    </div>
+                    <span class="card-badge-custom"
+                        style="background:rgba(255,80,0,.2);border:1px solid #ff5000;color:#ff8844;">🔥 HOT</span>
+                </div>
+                <div class="pc-body">
+                    <div class="pc-meta"><span class="pc-tag">Alien Analysis</span><span class="pc-date">Mar 02,
+                            2026</span></div>
+                    <h3 class="pc-title">Heatblast: Why the First Alien Remains the Most Iconic Transformation in Ben 10
+                        History</h3>
+                    <p class="pc-excerpt">From that very first summer day when Ben accidentally became a walking
+                        inferno, Heatblast set the standard. We break down the Pyronite physiology, power ceiling, and
+                        why this fiery Vulkanian still hits differently after all these years.</p>
+                    <div class="pc-footer">
+                        <div class="pc-author">
+                            <div class="author-dot">🔥</div><span class="author-nm">Dr. Omnitrix</span>
+                        </div>
+                        <span class="read-min">8 MIN READ</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- XLR8 -->
+            <a href="#" class="post-card sr">
+                <div class="pc-art art-xlr8">
+                    <div class="xlr8-track"></div>
+                    <div class="xlr8-track xlr8-track2"></div>
+                    <div class="xlr8-track xlr8-track3"></div>
+                    <div class="xlr8-blur"></div>
+                    <svg style="position:relative;z-index:2;animation:hbBob 1.5s ease-in-out infinite" width="85"
+                        height="120" viewBox="0 0 85 120" fill="none">
+                        <ellipse cx="42" cy="65" rx="20" ry="28" fill="#0044cc" />
+                        <ellipse cx="42" cy="58" rx="15" ry="20" fill="#0066ff" />
+                        <path d="M22 82 Q8 88 6 100 L20 97 Q26 90 32 87Z" fill="#0033aa" />
+                        <path d="M62 82 Q76 88 78 100 L64 97 Q58 90 52 87Z" fill="#0033aa" />
+                        <ellipse cx="42" cy="40" rx="17" ry="15" fill="#0055dd" />
+                        <path d="M25 37 Q42 30 59 37 Q53 45 42 45 Q31 45 25 37Z" fill="#00ccff" opacity=".75" />
+                        <ellipse cx="34" cy="38" rx="5" ry="4" fill="#00ffff" />
+                        <ellipse cx="50" cy="38" rx="5" ry="4" fill="#00ffff" />
+                        <ellipse cx="34" cy="38" rx="2.5" ry="2.5" fill="#003" />
+                        <ellipse cx="50" cy="38" rx="2.5" ry="2.5" fill="#003" />
+                        <rect x="35" y="68" width="14" height="8" rx="2" fill="#003d0f" stroke="#00ff41"
+                            stroke-width="1" />
+                        <circle cx="42" cy="72" r="3" fill="#00ff41" />
+                    </svg>
+                    <span class="card-badge-custom"
+                        style="background:rgba(0,100,255,.2);border:1px solid #0088ff;color:#44aaff;">NEW</span>
+                </div>
+                <div class="pc-body">
+                    <div class="pc-meta"><span class="pc-tag">Speed Science</span><span class="pc-date">Feb 28,
+                            2026</span></div>
+                    <h3 class="pc-title">XLR8 vs. Physics: Breaking the Speed of Sound in Ben's Backyard</h3>
+                    <p class="pc-excerpt">How fast can a Kineceleran actually go, and what would that sonic boom
+                        actually do to a quiet suburban neighborhood?</p>
+                    <div class="pc-footer">
+                        <div class="pc-author">
+                            <div class="author-dot">⚡</div><span class="author-nm">Kevin Levin</span>
+                        </div>
+                        <span class="read-min">6 MIN READ</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Ghostfreak -->
+            <a href="#" class="post-card sr">
+                <div class="pc-art art-gf">
+                    <div class="gf-tentacle" style="--base:-20deg;left:30%;height:80px;top:5%;animation-duration:2s;">
+                    </div>
+                    <div class="gf-tentacle"
+                        style="--base:10deg;left:55%;height:100px;top:0%;animation-delay:.4s;animation-duration:2.5s;">
+                    </div>
+                    <div class="gf-tentacle"
+                        style="--base:-10deg;right:20%;height:65px;top:10%;animation-delay:.8s;animation-duration:3s;">
+                    </div>
+                    <svg style="position:relative;z-index:2;animation:hbBob 4s ease-in-out infinite" width="80"
+                        height="120" viewBox="0 0 80 120" fill="none">
+                        <ellipse cx="40" cy="58" rx="24" ry="34" fill="rgba(180,120,255,.12)"
+                            stroke="rgba(200,150,255,.35)" stroke-width="1.5" />
+                        <path d="M26 37 L54 37 M27 48 L53 48 M28 59 L52 59" stroke="rgba(180,130,255,.4)"
+                            stroke-width=".8" />
+                        <ellipse cx="40" cy="38" rx="11" ry="7" fill="rgba(150,80,255,.75)" />
+                        <ellipse cx="40" cy="38" rx="7" ry="4.5" fill="#aa44ff" />
+                        <ellipse cx="40" cy="38" rx="4" ry="2.5" fill="#fff" opacity=".9" />
+                        <path d="M18 80 Q8 94 13 106" stroke="rgba(170,90,255,.7)" stroke-width="2"
+                            stroke-linecap="round" fill="none" />
+                        <path d="M30 85 L28 108" stroke="rgba(170,90,255,.7)" stroke-width="2" stroke-linecap="round"
+                            fill="none" />
+                        <path d="M50 85 L52 108" stroke="rgba(170,90,255,.7)" stroke-width="2" stroke-linecap="round"
+                            fill="none" />
+                        <path d="M62 80 Q72 94 67 106" stroke="rgba(170,90,255,.7)" stroke-width="2"
+                            stroke-linecap="round" fill="none" />
+                        <rect x="33" y="64" width="14" height="8" rx="2" fill="#003d0f" stroke="#00ff41"
+                            stroke-width="1" />
+                        <circle cx="40" cy="68" r="3" fill="#00ff41" />
+                    </svg>
+                    <div class="gf-eye" style="top:65%;left:20%"></div>
+                    <div class="gf-eye" style="top:45%;right:15%;width:14px;height:6px;animation-delay:1.2s"></div>
+                </div>
+                <div class="pc-body">
+                    <div class="pc-meta"><span class="pc-tag">Lore Deep Dive</span><span class="pc-date">Feb 25,
+                            2026</span></div>
+                    <h3 class="pc-title">Ghostfreak: The Alien That Broke Free and Why It Haunts the Whole Mythology
+                    </h3>
+                    <p class="pc-excerpt">Zs'Skayr hiding inside the Omnitrix is the darkest storyline. We trace every
+                        clue from Season 1 to Alien Force.</p>
+                    <div class="pc-footer">
+                        <div class="pc-author">
+                            <div class="author-dot">👁️</div><span class="author-nm">Gwen Tennyson</span>
+                        </div>
+                        <span class="read-min">10 MIN READ</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats sr">
+        <div class="stats-inner">
+            <div class="stat"><span class="stat-n" data-t="10">0</span>
+                <p class="stat-l">Original Aliens</p>
+            </div>
+            <div class="stat"><span class="stat-n" data-t="62">0</span>
+                <p class="stat-l">Total Transforms</p>
+            </div>
+            <div class="stat"><span class="stat-n" data-t="247">0</span>
+                <p class="stat-l">Blog Articles</p>
+            </div>
+            <div class="stat"><span class="stat-n" data-t="4">0</span>
+                <p class="stat-l">Series Covered</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- WATCHFACE DIVIDER -->
+    <div class="watchface-divider">
+        <div class="watchface-hr"></div>
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none"
+            style="flex-shrink:0;margin:0 2rem;animation:omniPulse 2.5s ease-in-out infinite">
+            <circle cx="40" cy="40" r="38" stroke="#00ff41" stroke-width="1.5" fill="none" />
+            <path d="M40 12 L63 26 L63 54 L40 68 L17 54 L17 26 Z" fill="#003d0f" stroke="#00ff41" stroke-width="1.5" />
+            <circle cx="40" cy="40" r="14" stroke="#00ff41" stroke-width="2" fill="#001205" />
+            <path d="M33 33 L47 33 L40 40 L47 47 L33 47 L40 40 Z" fill="#00ff41" />
+            <circle cx="40" cy="40" r="4" fill="#fff" opacity=".7" />
+        </svg>
+        <div class="watchface-hr r"></div>
+    </div>
+
+    <!-- ALIEN CODEX -->
+    <section class="alien-profiles" id="aliens">
+        <div class="sec-head sr">
+            <span class="sec-eyebrow">Omnitrix Database</span>
+            <h2 class="sec-title">Alien <em>Codex</em></h2>
+            <div class="sec-line"></div>
+        </div>
+        <div class="aliens-grid">
+
+            <div class="alien-tile sr" style="--tile-color:#ff5500;--tile-glow:rgba(255,80,0,.25)"
+                onclick="doTransform()">
+                <div class="tile-glow"></div>
+                <svg class="tile-icon" viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="35" r="33" fill="#1a0800" stroke="#ff5500" stroke-width="1.5" />
+                    <ellipse cx="35" cy="44" rx="16" ry="18" fill="#cc2200" />
+                    <ellipse cx="35" cy="39" rx="12" ry="14" fill="#ff4400" />
+                    <path d="M24 26 Q27 10 35 18 Q37 5 40 16 Q44 8 46 23 Q48 30 43 32" fill="#ff6600" opacity=".9" />
+                    <path d="M27 29 Q30 15 35 20 Q38 10 42 21" fill="#ffaa00" opacity=".7" />
+                    <ellipse cx="29" cy="35" rx="4" ry="5" fill="#fff" opacity=".85" />
+                    <ellipse cx="41" cy="35" rx="4" ry="5" fill="#fff" opacity=".85" />
+                    <ellipse cx="29" cy="36" rx="2" ry="3" fill="#000" />
+                    <ellipse cx="41" cy="36" rx="2" ry="3" fill="#000" />
+                </svg>
+                <div class="tile-name">HEATBLAST</div>
+                <div class="tile-species">Pyronite · Pyros</div>
+                <div class="tile-power-bar">
+                    <div class="tile-power-fill" data-w="90%"></div>
+                </div>
+            </div>
+
+            <div class="alien-tile sr" style="--tile-color:#cc0000;--tile-glow:rgba(200,0,0,.25)"
+                onclick="doTransform()">
+                <div class="tile-glow"></div>
+                <svg class="tile-icon" viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="35" r="33" fill="#100000" stroke="#cc0000" stroke-width="1.5" />
+                    <ellipse cx="35" cy="44" rx="14" ry="15" fill="#aa0000" />
+                    <ellipse cx="17" cy="36" rx="6" ry="12" fill="#880000" transform="rotate(-20 17 36)" />
+                    <ellipse cx="53" cy="36" rx="6" ry="12" fill="#880000" transform="rotate(20 53 36)" />
+                    <ellipse cx="13" cy="46" rx="5" ry="10" fill="#770000" transform="rotate(12 13 46)" />
+                    <ellipse cx="57" cy="46" rx="5" ry="10" fill="#770000" transform="rotate(-12 57 46)" />
+                    <ellipse cx="35" cy="27" rx="13" ry="11" fill="#cc0000" />
+                    <ellipse cx="27" cy="24" rx="3.5" ry="3.5" fill="#fff" />
+                    <ellipse cx="35" cy="22" rx="3.5" ry="3.5" fill="#fff" />
+                    <ellipse cx="43" cy="24" rx="3.5" ry="3.5" fill="#fff" />
+                    <ellipse cx="27" cy="24" rx="1.8" ry="1.8" fill="#000" />
+                    <ellipse cx="35" cy="22" rx="1.8" ry="1.8" fill="#000" />
+                    <ellipse cx="43" cy="24" rx="1.8" ry="1.8" fill="#000" />
+                </svg>
+                <div class="tile-name">FOUR ARMS</div>
+                <div class="tile-species">Tetramand · Khoros</div>
+                <div class="tile-power-bar">
+                    <div class="tile-power-fill" data-w="85%"></div>
+                </div>
+            </div>
+
+            <div class="alien-tile sr" style="--tile-color:#0088ff;--tile-glow:rgba(0,100,255,.25)"
+                onclick="doTransform()">
+                <div class="tile-glow"></div>
+                <svg class="tile-icon" viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="35" r="33" fill="#000510" stroke="#0088ff" stroke-width="1.5" />
+                    <line x1="4" y1="35" x2="22" y2="35" stroke="#0088ff" stroke-width="1" opacity=".4" />
+                    <line x1="4" y1="30" x2="18" y2="30" stroke="#0088ff" stroke-width=".8" opacity=".3" />
+                    <line x1="4" y1="40" x2="16" y2="40" stroke="#0088ff" stroke-width=".8" opacity=".3" />
+                    <ellipse cx="40" cy="40" rx="13" ry="17" fill="#0033aa" />
+                    <ellipse cx="40" cy="35" rx="11" ry="13" fill="#0055dd" />
+                    <path d="M29 31 Q40 25 51 31 Q47 37 40 37 Q33 37 29 31Z" fill="#00aaff" opacity=".8" />
+                    <path d="M27 47 Q13 53 11 63 L24 59 Q28 54 33 51Z" fill="#0033aa" />
+                    <ellipse cx="40" cy="30" rx="5" ry="3.5" fill="#00ddff" opacity=".9" />
+                    <rect x="33" y="44" width="14" height="8" rx="2" fill="#003d0f" stroke="#00ff41" stroke-width="1" />
+                    <circle cx="40" cy="48" r="3" fill="#00ff41" />
+                </svg>
+                <div class="tile-name">XLR8</div>
+                <div class="tile-species">Kineceleran · Kinet</div>
+                <div class="tile-power-bar">
+                    <div class="tile-power-fill" data-w="80%"></div>
+                </div>
+            </div>
+
+            <div class="alien-tile sr" style="--tile-color:#00ccff;--tile-glow:rgba(0,200,255,.25)"
+                onclick="doTransform()">
+                <div class="tile-glow"></div>
+                <svg class="tile-icon" viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="35" r="33" fill="#001520" stroke="#00ccff" stroke-width="1.5" />
+                    <path d="M35 15 L52 27 L52 53 L35 60 L18 53 L18 27 Z" fill="rgba(0,180,220,.35)" stroke="#00ccff"
+                        stroke-width="1.5" />
+                    <path d="M35 8 L44 18 L35 26 L26 18 Z" fill="rgba(0,200,255,.5)" stroke="#00eeff"
+                        stroke-width="1" />
+                    <line x1="35" y1="8" x2="35" y2="26" stroke="#00eeff" stroke-width=".7" opacity=".5" />
+                    <line x1="26" y1="18" x2="44" y2="18" stroke="#00eeff" stroke-width=".7" opacity=".5" />
+                    <ellipse cx="28" cy="33" rx="4.5" ry="4.5" fill="#00ffee" opacity=".9" />
+                    <ellipse cx="42" cy="33" rx="4.5" ry="4.5" fill="#00ffee" opacity=".9" />
+                    <ellipse cx="28" cy="33" rx="2.2" ry="2.2" fill="#003344" />
+                    <ellipse cx="42" cy="33" rx="2.2" ry="2.2" fill="#003344" />
+                    <path d="M52 27 L63 18 L57 29Z" fill="rgba(0,200,255,.4)" stroke="#00ccff" stroke-width="1" />
+                    <path d="M18 27 L7 18 L13 29Z" fill="rgba(0,200,255,.4)" stroke="#00ccff" stroke-width="1" />
+                </svg>
+                <div class="tile-name">DIAMONDHEAD</div>
+                <div class="tile-species">Petrosapien · Petropia</div>
+                <div class="tile-power-bar">
+                    <div class="tile-power-fill" data-w="88%"></div>
+                </div>
+            </div>
+
+            <div class="alien-tile sr" style="--tile-color:#9933ff;--tile-glow:rgba(150,50,255,.25)"
+                onclick="doTransform()">
+                <div class="tile-glow"></div>
+                <svg class="tile-icon" viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="35" r="33" fill="#060010" stroke="#9933ff" stroke-width="1.5" />
+                    <ellipse cx="35" cy="37" rx="17" ry="21" fill="rgba(160,100,255,.13)" stroke="rgba(180,120,255,.4)"
+                        stroke-width="1" />
+                    <path d="M20 44 L19 58 Q23 64 22 57" stroke="rgba(160,100,255,.7)" stroke-width="1.5" fill="none"
+                        stroke-linecap="round" />
+                    <path d="M29 46 L28 61" stroke="rgba(160,100,255,.7)" stroke-width="1.5" fill="none"
+                        stroke-linecap="round" />
+                    <path d="M41 46 L42 61" stroke="rgba(160,100,255,.7)" stroke-width="1.5" fill="none"
+                        stroke-linecap="round" />
+                    <path d="M50 44 L51 58 Q47 64 48 57" stroke="rgba(160,100,255,.7)" stroke-width="1.5" fill="none"
+                        stroke-linecap="round" />
+                    <ellipse cx="35" cy="31" rx="9" ry="5.5" fill="rgba(150,80,255,.8)" />
+                    <ellipse cx="35" cy="31" rx="5.5" ry="3.5" fill="#aa44ff" />
+                    <ellipse cx="35" cy="31" rx="3.5" ry="2" fill="#fff" opacity=".9" />
+                </svg>
+                <div class="tile-name">GHOSTFREAK</div>
+                <div class="tile-species">Ectonurite · Anur Phaetos</div>
+                <div class="tile-power-bar">
+                    <div class="tile-power-fill" data-w="92%"></div>
+                </div>
+            </div>
+
+            <div class="alien-tile sr" style="--tile-color:#00ff88;--tile-glow:rgba(0,255,100,.25)"
+                onclick="doTransform()">
+                <div class="tile-glow"></div>
+                <svg class="tile-icon" viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="35" r="33" fill="#001208" stroke="#00ff88" stroke-width="1.5" />
+                    <ellipse cx="35" cy="40" rx="16" ry="19" fill="rgba(0,200,80,.3)" stroke="#00ff88"
+                        stroke-width="1" />
+                    <path d="M19 35 L25 35 L25 29 L35 29 L35 24 L46 24" stroke="#00ff88" stroke-width=".9" opacity=".65"
+                        fill="none" />
+                    <path d="M19 46 L27 46 L27 52 L35 52" stroke="#00ff88" stroke-width=".9" opacity=".65"
+                        fill="none" />
+                    <path d="M51 35 L45 35 L45 41 L35 41" stroke="#00ff88" stroke-width=".9" opacity=".65"
+                        fill="none" />
+                    <ellipse cx="35" cy="33" rx="10" ry="6.5" fill="rgba(0,200,80,.6)" />
+                    <ellipse cx="35" cy="33" rx="6" ry="4.5" fill="#00ff88" />
+                    <ellipse cx="35" cy="33" rx="3.5" ry="2.5" fill="#003d0f" />
+                    <circle cx="19" cy="35" r="2.2" fill="#00ff88" />
+                    <circle cx="51" cy="35" r="2.2" fill="#00ff88" />
+                    <circle cx="35" cy="20" r="2.2" fill="#00ff88" />
+                    <circle cx="35" cy="50" r="2.2" fill="#00ff88" />
+                </svg>
+                <div class="tile-name">UPGRADE</div>
+                <div class="tile-species">Galvanic Mechamorph · Galvan B</div>
+                <div class="tile-power-bar">
+                    <div class="tile-power-fill" data-w="78%"></div>
+                </div>
+            </div>
+
+            <div class="alien-tile sr" style="--tile-color:#cc6600;--tile-glow:rgba(200,100,0,.25)"
+                onclick="doTransform()">
+                <div class="tile-glow"></div>
+                <svg class="tile-icon" viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="35" r="33" fill="#100800" stroke="#cc6600" stroke-width="1.5" />
+                    <ellipse cx="35" cy="43" rx="18" ry="16" fill="#aa4400" />
+                    <ellipse cx="35" cy="28" rx="15" ry="13" fill="#cc5500" />
+                    <path d="M25 20 L23 9 L30 19Z" fill="#bb4400" />
+                    <path d="M35 18 L33 6 L39 17Z" fill="#bb4400" />
+                    <path d="M45 20 L47 9 L40 19Z" fill="#bb4400" />
+                    <path d="M17 39 L11 28 L20 37Z" fill="#993300" />
+                    <path d="M53 39 L59 28 L50 37Z" fill="#993300" />
+                    <path d="M23 30 Q21 36 23 42" stroke="#ff8844" stroke-width="1.5" fill="none" />
+                    <path d="M47 30 Q49 36 47 42" stroke="#ff8844" stroke-width="1.5" fill="none" />
+                    <path d="M27 41 Q35 48 43 41" stroke="#331100" stroke-width="1.5" fill="none" />
+                    <line x1="30" y1="41" x2="30" y2="47" stroke="#fff" stroke-width="1" />
+                    <line x1="35" y1="42" x2="35" y2="48" stroke="#fff" stroke-width="1" />
+                    <line x1="40" y1="41" x2="40" y2="47" stroke="#fff" stroke-width="1" />
+                </svg>
+                <div class="tile-name">WILDMUTT</div>
+                <div class="tile-species">Vulpimancer · Vulpin</div>
+                <div class="tile-power-bar">
+                    <div class="tile-power-fill" data-w="72%"></div>
+                </div>
+            </div>
+
+            <div class="alien-tile sr" style="--tile-color:#88aaff;--tile-glow:rgba(100,150,255,.25)"
+                onclick="doTransform()">
+                <div class="tile-glow"></div>
+                <svg class="tile-icon" viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="35" r="33" fill="#050515" stroke="#88aaff" stroke-width="1.5" />
+                    <ellipse cx="35" cy="28" rx="21" ry="18" fill="#6677cc" />
+                    <path d="M19 24 Q24 18 29 24 Q34 18 40 24 Q45 18 51 24" stroke="#8899ee" stroke-width="1.5"
+                        fill="none" opacity=".7" />
+                    <path d="M21 31 Q26 25 31 31 Q37 25 42 31 Q47 25 52 31" stroke="#8899ee" stroke-width="1.5"
+                        fill="none" opacity=".5" />
+                    <ellipse cx="35" cy="52" rx="9" ry="11" fill="#5566bb" />
+                    <ellipse cx="27" cy="29" rx="5.5" ry="6.5" fill="#fff" />
+                    <ellipse cx="43" cy="29" rx="5.5" ry="6.5" fill="#fff" />
+                    <ellipse cx="27" cy="30" rx="3.5" ry="4.5" fill="#4455aa" />
+                    <ellipse cx="43" cy="30" rx="3.5" ry="4.5" fill="#4455aa" />
+                    <ellipse cx="27" cy="30" rx="1.8" ry="2.2" fill="#000" />
+                    <ellipse cx="43" cy="30" rx="1.8" ry="2.2" fill="#000" />
+                </svg>
+                <div class="tile-name">GREY MATTER</div>
+                <div class="tile-species">Galvan · Galvan Prime</div>
+                <div class="tile-power-bar">
+                    <div class="tile-power-fill" data-w="70%"></div>
+                </div>
+            </div>
+
+            <div class="alien-tile sr" style="--tile-color:#99ff00;--tile-glow:rgba(150,255,0,.25)"
+                onclick="doTransform()">
+                <div class="tile-glow"></div>
+                <svg class="tile-icon" viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="35" r="33" fill="#060c00" stroke="#99ff00" stroke-width="1.5" />
+                    <ellipse cx="19" cy="27" rx="15" ry="9" fill="rgba(100,200,0,.3)" stroke="#88dd00" stroke-width="1"
+                        transform="rotate(-22 19 27)" />
+                    <ellipse cx="51" cy="27" rx="15" ry="9" fill="rgba(100,200,0,.3)" stroke="#88dd00" stroke-width="1"
+                        transform="rotate(22 51 27)" />
+                    <ellipse cx="17" cy="38" rx="13" ry="6" fill="rgba(100,200,0,.2)" stroke="#88dd00" stroke-width=".8"
+                        transform="rotate(15 17 38)" />
+                    <ellipse cx="53" cy="38" rx="13" ry="6" fill="rgba(100,200,0,.2)" stroke="#88dd00" stroke-width=".8"
+                        transform="rotate(-15 53 38)" />
+                    <ellipse cx="35" cy="43" rx="9" ry="14" fill="#225500" />
+                    <ellipse cx="35" cy="32" rx="11" ry="11" fill="#336600" />
+                    <ellipse cx="27" cy="29" rx="4.5" ry="4.5" fill="#ffdd00" />
+                    <ellipse cx="43" cy="29" rx="4.5" ry="4.5" fill="#ffdd00" />
+                    <ellipse cx="27" cy="29" rx="2.2" ry="2.2" fill="#000" />
+                    <ellipse cx="43" cy="29" rx="2.2" ry="2.2" fill="#000" />
+                    <line x1="29" y1="23" x2="21" y2="11" stroke="#88dd00" stroke-width="1" />
+                    <line x1="41" y1="23" x2="49" y2="11" stroke="#88dd00" stroke-width="1" />
+                    <circle cx="21" cy="11" r="2.2" fill="#99ff00" />
+                    <circle cx="49" cy="11" r="2.2" fill="#99ff00" />
+                </svg>
+                <div class="tile-name">STINKFLY</div>
+                <div class="tile-species">Lepidopterran · Lepidopterra</div>
+                <div class="tile-power-bar">
+                    <div class="tile-power-fill" data-w="65%"></div>
+                </div>
+            </div>
+
+            <div class="alien-tile sr" style="--tile-color:#0066aa;--tile-glow:rgba(0,100,180,.25)"
+                onclick="doTransform()">
+                <div class="tile-glow"></div>
+                <svg class="tile-icon" viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="35" r="33" fill="#000a15" stroke="#0066aa" stroke-width="1.5" />
+                    <ellipse cx="35" cy="41" rx="17" ry="19" fill="#003d66" />
+                    <path d="M21 36 Q27 30 33 36 Q38 30 43 36 Q48 30 53 36" stroke="#0088cc" stroke-width=".9"
+                        fill="none" opacity=".55" />
+                    <path d="M21 44 Q27 38 33 44 Q38 38 43 44 Q48 38 53 44" stroke="#0088cc" stroke-width=".9"
+                        fill="none" opacity=".55" />
+                    <ellipse cx="35" cy="28" rx="14" ry="12" fill="#004d80" />
+                    <path d="M19 33 Q35 43 51 33" fill="#001a33" stroke="#0088cc" stroke-width="1" />
+                    <path d="M22 34 L22 39 L26 34Z" fill="#fff" />
+                    <path d="M29 36 L29 41 L33 36Z" fill="#fff" />
+                    <path d="M48 34 L48 39 L44 34Z" fill="#fff" />
+                    <ellipse cx="28" cy="24" rx="4.5" ry="4.5" fill="#00bbff" opacity=".9" />
+                    <ellipse cx="42" cy="24" rx="4.5" ry="4.5" fill="#00bbff" opacity=".9" />
+                    <path d="M35 57 L19 67 L35 61 L51 67Z" fill="#003d66" stroke="#0066aa" stroke-width="1" />
+                </svg>
+                <div class="tile-name">RIPJAWS</div>
+                <div class="tile-species">Piscciss Volann · Piscciss</div>
+                <div class="tile-power-bar">
+                    <div class="tile-power-fill" data-w="68%"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BLOG GRID -->
+    <section class="blog" id="blog">
+        <div class="sec-head sr">
+            <span class="sec-eyebrow">Latest</span>
+            <h2 class="sec-title">Recent <em>Transmissions</em></h2>
+            <div class="sec-line"></div>
+        </div>
+        <div class="blog-grid">
+            <a href="#" class="post-card sr">
+                <div class="pc-art art-heatblast" style="aspect-ratio:16/9">
+                    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                        <svg width="75" height="110" viewBox="0 0 75 110" fill="none"
+                            style="animation:hbBob 2s ease-in-out infinite">
+                            <ellipse cx="37" cy="62" rx="19" ry="23" fill="#cc2200" />
+                            <ellipse cx="37" cy="55" rx="15" ry="17" fill="#ff4400" />
+                            <path d="M22 36 Q25 18 37 25 Q39 10 43 21 Q47 12 50 28" fill="#ff6600" opacity=".9" />
+                            <ellipse cx="37" cy="39" rx="13" ry="11" fill="#ff5500" />
+                            <ellipse cx="30" cy="36" rx="4" ry="5" fill="#fff" opacity=".85" />
+                            <ellipse cx="44" cy="36" rx="4" ry="5" fill="#fff" opacity=".85" />
+                            <ellipse cx="30" cy="37" rx="2" ry="3" fill="#000" />
+                            <ellipse cx="44" cy="37" rx="2" ry="3" fill="#000" />
+                            <ellipse cx="19" cy="59" rx="7" ry="15" fill="#aa2000" transform="rotate(-15 19 59)" />
+                            <ellipse cx="55" cy="59" rx="7" ry="15" fill="#aa2000" transform="rotate(15 55 59)" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="pc-body">
+                    <div class="pc-meta"><span class="pc-tag">Villain Files</span><span class="pc-date">Feb 20,
+                            2026</span></div>
+                    <h3 class="pc-title">Four Arms vs. Vilgax: Every Battle Ranked by Destruction Level</h3>
+                    <p class="pc-excerpt">Pure brute force, seismic shockwaves — we rate every clash in bone-crunching
+                        detail.</p>
+                    <div class="pc-footer">
+                        <div class="pc-author">
+                            <div class="author-dot">👊</div><span class="author-nm">Ben Tennyson</span>
+                        </div>
+                        <span class="read-min">7 MIN READ</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="post-card sr">
+                <div class="pc-art art-dh" style="aspect-ratio:16/9">
+                    <div class="dh-crystal"></div>
+                    <div class="dh-crystal"></div>
+                    <div class="dh-crystal"></div>
+                    <svg style="position:relative;z-index:2;animation:hbBob 3s ease-in-out infinite" width="80"
+                        height="110" viewBox="0 0 80 110" fill="none">
+                        <path d="M40 5 L60 18 L60 48 L40 60 L20 48 L20 18 Z" fill="rgba(0,180,220,.4)" stroke="#00ccff"
+                            stroke-width="1.5" />
+                        <path d="M40 15 L54 23 L54 42 L40 50 L26 42 L26 23 Z" fill="rgba(0,200,255,.2)" stroke="#00eeff"
+                            stroke-width="1" />
+                        <ellipse cx="32" cy="30" rx="5.5" ry="5.5" fill="#00ffee" opacity=".9" />
+                        <ellipse cx="48" cy="30" rx="5.5" ry="5.5" fill="#00ffee" opacity=".9" />
+                        <ellipse cx="32" cy="30" rx="2.8" ry="2.8" fill="#003344" />
+                        <ellipse cx="48" cy="30" rx="2.8" ry="2.8" fill="#003344" />
+                        <path d="M30 70 L30 105" stroke="rgba(0,200,255,.5)" stroke-width="9" stroke-linecap="round" />
+                        <path d="M50 70 L50 105" stroke="rgba(0,200,255,.5)" stroke-width="9" stroke-linecap="round" />
+                        <rect x="32" y="55" width="16" height="8" rx="2" fill="#003d0f" stroke="#00ff41"
+                            stroke-width="1" />
+                        <circle cx="40" cy="59" r="3.2" fill="#00ff41" />
+                    </svg>
+                </div>
+                <div class="pc-body">
+                    <div class="pc-meta"><span class="pc-tag">Science</span><span class="pc-date">Feb 18, 2026</span>
+                    </div>
+                    <h3 class="pc-title">Is Diamondhead Truly Indestructible? A Materials Science Breakdown</h3>
+                    <p class="pc-excerpt">Petrosapien crystal vs. real-world diamond — how does Ben's hardest form hold
+                        up under actual pressure?</p>
+                    <div class="pc-footer">
+                        <div class="pc-author">
+                            <div class="author-dot">💎</div><span class="author-nm">Prof. Hex</span>
+                        </div>
+                        <span class="read-min">9 MIN READ</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="post-card sr">
+                <div class="pc-art art-gf" style="aspect-ratio:16/9">
+                    <div class="gf-tentacle" style="--base:-22deg;left:28%;height:75px;top:5%;animation-duration:2.5s">
+                    </div>
+                    <div class="gf-tentacle"
+                        style="--base:12deg;left:58%;height:95px;top:0%;animation-delay:.5s;animation-duration:3s">
+                    </div>
+                    <div class="gf-tentacle"
+                        style="--base:-8deg;right:18%;height:60px;top:12%;animation-delay:1s;animation-duration:2s">
+                    </div>
+                    <svg style="position:relative;z-index:2;animation:hbBob 4s ease-in-out infinite" width="65"
+                        height="95" viewBox="0 0 65 95" fill="none">
+                        <ellipse cx="32" cy="45" rx="20" ry="28" fill="rgba(180,120,255,.12)"
+                            stroke="rgba(200,150,255,.35)" stroke-width="1.5" />
+                        <path d="M20 29 L44 29 M21 40 L43 40 M22 51 L42 51" stroke="rgba(180,130,255,.4)"
+                            stroke-width=".8" />
+                        <ellipse cx="32" cy="28" rx="9" ry="5.5" fill="rgba(150,80,255,.75)" />
+                        <ellipse cx="32" cy="28" rx="5.5" ry="3.5" fill="#aa44ff" />
+                        <ellipse cx="32" cy="28" rx="3.2" ry="2" fill="#fff" opacity=".9" />
+                        <path d="M14 62 Q6 73 10 83" stroke="rgba(170,90,255,.7)" stroke-width="2"
+                            stroke-linecap="round" fill="none" />
+                        <path d="M24 66 L22 85" stroke="rgba(170,90,255,.7)" stroke-width="2" stroke-linecap="round"
+                            fill="none" />
+                        <path d="M40 66 L42 85" stroke="rgba(170,90,255,.7)" stroke-width="2" stroke-linecap="round"
+                            fill="none" />
+                        <path d="M50 62 Q58 73 54 83" stroke="rgba(170,90,255,.7)" stroke-width="2"
+                            stroke-linecap="round" fill="none" />
+                    </svg>
+                </div>
+                <div class="pc-body">
+                    <div class="pc-meta"><span class="pc-tag">Timeline</span><span class="pc-date">Feb 15, 2026</span>
+                    </div>
+                    <h3 class="pc-title">The Full Ben 10 Timeline: Original Series to the End of Omniverse</h3>
+                    <p class="pc-excerpt">Every canonical year, every series plotted — from that fateful summer to the
+                        final battle with the Rooters.</p>
+                    <div class="pc-footer">
+                        <div class="pc-author">
+                            <div class="author-dot">⏱️</div><span class="author-nm">Gwen Tennyson</span>
+                        </div>
+                        <span class="read-min">15 MIN READ</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter" id="newsletter">
+        <div class="nl-omni"></div>
+        <div class="nl-ring"></div>
+        <div class="nl-ring nl-ring2"></div>
+        <div class="nl-inner sr">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"
+                style="margin:0 auto 2rem;display:block;animation:omniPulse 2.5s ease-in-out infinite;filter:drop-shadow(0 0 20px var(--g)) drop-shadow(0 0 40px rgba(0,255,65,.4))">
+                <circle cx="36" cy="36" r="34" stroke="#00ff41" stroke-width="2" fill="none" />
+                <path d="M36 10 L58 23 L58 49 L36 62 L14 49 L14 23 Z" fill="#003d0f" stroke="#00ff41"
+                    stroke-width="2" />
+                <circle cx="36" cy="36" r="14" stroke="#00ff41" stroke-width="2" fill="#001205" />
+                <path d="M28 28 L44 28 L36 36 L44 44 L28 44 L36 36 Z" fill="#00ff41" />
+                <circle cx="36" cy="36" r="4.5" fill="#fff" opacity=".75" />
+            </svg>
+            <h2 class="nl-title">Activate the <em>Signal</em></h2>
+            <p class="nl-sub">Get the latest alien profiles, episode breakdowns, and fan theories delivered to your
+                inbox. No spam — just pure Omnitrix energy.</p>
+            <div class="nl-form">
+                <input type="email" class="nl-input" placeholder="your@email.com" id="nlInput" />
+                <button class="nl-btn" onclick="subscribe()">TRANSMIT</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="foot-grid">
+            <div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <circle cx="18" cy="18" r="17" stroke="#00ff41" stroke-width="1.5" fill="none" />
+                        <path d="M18 6 L29 12 L29 24 L18 30 L7 24 L7 12 Z" fill="#003d0f" stroke="#00ff41"
+                            stroke-width="1.5" />
+                        <circle cx="18" cy="18" r="7" stroke="#00ff41" stroke-width="1.5" fill="#001205" />
+                        <path d="M14 14 L22 14 L18 18 L22 22 L14 22 L18 18 Z" fill="#00ff41" />
+                        <circle cx="18" cy="18" r="2.5" fill="#fff" opacity=".7" />
+                    </svg>
+                    <span
+                        style="font-family:'Orbitron',monospace;font-weight:900;font-size:.95rem;color:var(--g);letter-spacing:2px;">OMNITRIX
+                        CHRONICLES</span>
+                </div>
+                <p class="foot-brand-desc">The universe's most comprehensive Ben 10 blog. Every alien, every battle,
+                    every hero moment documented.</p>
+            </div>
+            <div>
+                <h4 class="foot-h">Series</h4>
+                <ul class="foot-ul">
+                    <li><a href="#">Original Series</a></li>
+                    <li><a href="#">Alien Force</a></li>
+                    <li><a href="#">Ultimate Alien</a></li>
+                    <li><a href="#">Omniverse</a></li>
+                    <li><a href="#">2016 Reboot</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="foot-h">Categories</h4>
+                <ul class="foot-ul">
+                    <li><a href="#">Alien Profiles</a></li>
+                    <li><a href="#">Episode Reviews</a></li>
+                    <li><a href="#">Fan Theories</a></li>
+                    <li><a href="#">Villain Files</a></li>
+                    <li><a href="#">Omnitrix Lore</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="foot-h">Community</h4>
+                <ul class="foot-ul">
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Reddit</a></li>
+                    <li><a href="#">Twitter/X</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <span class="foot-copy">© 2026 OMNITRIX CHRONICLES · ALL ALIEN LIKENESSES BELONG TO CARTOON NETWORK</span>
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <circle cx="15" cy="15" r="14" stroke="#00ff41" stroke-width="1.5" fill="none" />
+                <path d="M15 5 L23 10 L23 20 L15 25 L7 20 L7 10 Z" fill="#003d0f" stroke="#00ff41" stroke-width="1" />
+                <circle cx="15" cy="15" r="5" stroke="#00ff41" stroke-width="1.5" fill="#001205" />
+                <path d="M12 12 L18 12 L15 15 L18 18 L12 18 L15 15 Z" fill="#00ff41" />
+            </svg>
+        </div>
+    </footer>
+
+    <script>
+        // CURSOR
+        const cur = document.getElementById('cur'), cur2 = document.getElementById('cur2');
+        let mx = 0, my = 0, cx2 = 0, cy2 = 0;
+        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+        (function loop() {
+            cx2 += (mx - cx2) * .1; cy2 += (my - cy2) * .1;
+            cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+            cur2.style.left = cx2 + 'px'; cur2.style.top = cy2 + 'px';
+            requestAnimationFrame(loop);
+        })();
+        document.querySelectorAll('a,button,.alien-tile,.post-card').forEach(el => {
+            el.addEventListener('mouseenter', () => { cur.style.transform = 'translate(-50%,-50%) scale(2.5)'; cur2.style.transform = 'translate(-50%,-50%) scale(2)'; });
+            el.addEventListener('mouseleave', () => { cur.style.transform = 'translate(-50%,-50%) scale(1)'; cur2.style.transform = 'translate(-50%,-50%) scale(1)'; });
+        });
+
+        // LIGHTNING
+        (function () {
+            const c = document.getElementById('lightning');
+            for (let i = 0; i < 14; i++) {
+                const b = document.createElement('div'); b.className = 'bolt';
+                b.style.cssText = `left:${Math.random() * 100}%;height:${60 + Math.random() * 200}px;top:${Math.random() * 60}%;animation:boltAnim ${2 + Math.random() * 4}s ${Math.random() * 5}s linear infinite;transform-origin:top center;`;
+                c.appendChild(b);
+            }
+        })();
+
+        // PARTICLES
+        (function () {
+            const c = document.getElementById('particles');
+            for (let i = 0; i < 35; i++) {
+                const s = document.createElement('div'); s.className = 'spark';
+                s.style.cssText = `left:${Math.random() * 100}%;--dx:${(Math.random() - .5) * 200}px;animation:sparkFloat ${5 + Math.random() * 10}s ${Math.random() * 10}s linear infinite;`;
+                c.appendChild(s);
+            }
+        })();
+
+        // TRANSFORM
+        function doTransform() {
+            const w = document.getElementById('transformWipe');
+            w.style.cssText = 'position:fixed;inset:0;z-index:99000;background:radial-gradient(circle at center,#00ff41 0%,#003310 40%,#000 100%);transform:scale(0);border-radius:50%;opacity:1;pointer-events:all;transition:transform .5s cubic-bezier(.4,0,.2,1),opacity .4s;';
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => { w.style.transform = 'scale(4)'; });
+            });
+            setTimeout(() => {
+                w.style.transition = 'transform .6s ease-in,opacity .35s .25s';
+                w.style.opacity = '0';
+            }, 600);
+            setTimeout(() => { w.style.cssText = 'position:fixed;inset:0;z-index:99000;transform:scale(0);opacity:0;pointer-events:none;'; }, 1200);
+        }
+
+        // SCROLL REVEAL
+        const srEls = document.querySelectorAll('.sr');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const i = Array.from(srEls).indexOf(e.target) % 4;
+                    setTimeout(() => e.target.classList.add('vis'), i * 100);
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: .1 });
+        srEls.forEach(r => obs.observe(r));
+
+        // COUNTERS
+        document.querySelectorAll('.stat-n[data-t]').forEach(el => {
+            const cObs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (!e.isIntersecting) return;
+                    const target = +el.dataset.t; let start = null;
+                    (function step(ts) { if (!start) start = ts; const p = Math.min((ts - start) / 1600, 1); const ep = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(ep * target); if (p < 1) requestAnimationFrame(step); })(performance.now());
+                    cObs.unobserve(el);
+                });
+            }, { threshold: .5 });
+            cObs.observe(el);
+        });
+
+        // POWER BARS
+        document.querySelectorAll('.alien-tile').forEach(tile => {
+            const fill = tile.querySelector('.tile-power-fill');
+            if (!fill) return;
+            const w = fill.dataset.w || '75%';
+            const tObs = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => { fill.style.transform = 'scaleX(' + parseFloat(w) / 100 + ')'; }, 400); tObs.unobserve(e.target); } });
+            }, { threshold: .5 });
+            tObs.observe(tile);
+            tile.addEventListener('mouseenter', () => fill.style.transform = 'scaleX(' + parseFloat(w) / 100 + ')');
+        });
+
+        // BANNER LOOP
+        const tb = document.getElementById('tbanner'); tb.innerHTML += tb.innerHTML;
+
+        // SUBSCRIBE
+        function subscribe() {
+            const inp = document.getElementById('nlInput'), btn = inp.nextElementSibling;
+            if (!inp.value || !inp.value.includes('@')) { inp.style.outline = '2px solid #ff4444'; setTimeout(() => inp.style.outline = '', 1500); return; }
+            btn.textContent = '✓ ACTIVATED'; btn.style.background = '#00b32c';
+            inp.value = ''; inp.placeholder = 'Signal received, hero!';
+            setTimeout(() => { btn.textContent = 'TRANSMIT'; btn.style.background = ''; inp.placeholder = 'your@email.com'; }, 3500);
+            doTransform();
+        }
+
+        // NAV scroll
+        window.addEventListener('scroll', () => { document.querySelector('nav').style.background = window.scrollY > 50 ? 'rgba(2,7,4,.97)' : 'rgba(2,7,4,.85)'; });
+    </script>
+</body>
+
+</html>

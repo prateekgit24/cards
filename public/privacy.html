@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Cosmics Software</title>
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+    <meta name="description" content="Privacy Policy for the Ben 10 Trump Card Game by Cosmics Software.">
+    <meta name="keywords" content="Cosmics Software, Ben 10, Card Game, Privacy Policy">
+    <link rel="canonical" href="https://cards.cosmics.software/privacy.html" />
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Exo+2:wght@400;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .legal-root { min-height: 100vh; display: flex; flex-direction: column; position: relative; z-index: 1; }
+        .legal-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; border-bottom: 1px solid rgba(9,226,125,0.12); background: rgba(8,13,24,0.88); backdrop-filter: blur(14px); }
+        .nav-logo { font-family: 'Orbitron', monospace; font-size: 1.25rem; font-weight: 900; color: #fff; letter-spacing: 2px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .nav-logo:hover { color: var(--green); }
+        .nav-omni { width: 28px; height: 28px; background: url('assets/logo.jpg') center/cover; border-radius: 50%; border: 2px solid var(--green); }
+        .legal-content { max-width: 800px; margin: 0 auto; padding: 60px 24px; flex: 1; width: 100%; color: rgba(255,255,255,0.8); line-height: 1.7; font-family: 'Exo 2', sans-serif; }
+        .legal-content h1 { font-family: 'Bangers', cursive; font-size: 3rem; color: #fff; margin-bottom: 24px; letter-spacing: 2px; text-shadow: 0 0 10px rgba(9,226,125,0.4); }
+        .legal-content h2 { font-family: 'Orbitron', monospace; font-size: 1.2rem; color: var(--green); margin: 32px 0 16px; letter-spacing: 1px; }
+        .legal-content p, .legal-content li { margin-bottom: 16px; font-size: 0.95rem; }
+        .legal-content a { color: var(--green); text-decoration: none; }
+        .legal-content a:hover { text-decoration: underline; }
+        .home-footer { padding: 20px 32px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; background: rgba(8,13,24,0.95); margin-top: auto; }
+        .footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.22); letter-spacing: 0.5px; }
+        .footer-links { display: flex; gap: 16px; }
+        .footer-link { font-size: 0.68rem; color: rgba(255,255,255,0.28); text-decoration: none; transition: color .15s; }
+        .footer-link:hover { color: var(--green); }
+        #lightning { position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.15; }
+        .bolt { position: absolute; width: 2px; background: #fff; box-shadow: 0 0 10px #09e27d, 0 0 20px #09e27d; border-radius: 2px; opacity: 0; animation: flash linear infinite; transform-origin: top center; }
+        @keyframes flash { 0%,100%{opacity:0} 1%,5%{opacity:1} 6%,9%{opacity:0} 10%,15%{opacity:1} 16%,99%{opacity:0} }
+    </style>
+</head>
+<body>
+    <div id="lightning"></div>
+    <div class="legal-root">
+        <nav class="legal-nav">
+            <a href="/" class="nav-logo">
+                <div class="nav-omni"></div>
+                COSMICS<span style="font-size:0.6rem;color:var(--green);font-family:'Exo 2',sans-serif;margin-left:4px">SOFTWARE</span>
+            </a>
+        </nav>
+        <div class="legal-content">
+            <h1>Privacy Policy</h1>
+            <p><strong>Effective Date:</strong> March 25, 2026</p>
+            
+            <h2>1. Information We Collect</h2>
+            <p>Cosmics Software built the Ben 10 Trump Card Game with privacy in mind. Because this game operates without user authentication, we do not collect personal identifiers such as names, emails, or phone numbers. The data we do process includes:
+                <ul>
+                    <li><strong>Display Names:</strong> The "Callsigns" you enter when creating or joining a room are stored temporarily in server memory to recognize you in-game.</li>
+                    <li><strong>Game Activity:</strong> We store minimal post-game statistics (wins, tricks won, cards collected) to populate the global Leaderboard. This data remains tied only to the chosen username.</li>
+                    <li><strong>IP Addresses & Routing:</strong> Basic connection data handled by Socket.IO to route multiplayer game traffic correctly. This is fleeting and never stored permanently.</li>
+                </ul>
+            </p>
+
+            <h2>2. Cookies & Local Storage</h2>
+            <p>We do not use tracking cookies. The application relies entirely on temporary WebSocket connections (`Socket.IO`). Your game session exists only as long as you keep the browser tab open.</p>
+
+            <h2>3. Third-Party Services</h2>
+            <p>Our application uses third-party avatar generators (such as DiceBear and RoboHash). Based on the avatar you select, these external services may log the request to deliver the avatar image to you.</p>
+
+            <h2>4. Contact Us</h2>
+            <p>If you have any questions or concerns regarding this Privacy Policy, please refer to our <a href="contact.html">Contact Us</a> page.</p>
+
+        </div>
+        <footer class="home-footer">
+            <div class="footer-copy">© 2026 Cosmics Software</div>
+            <div class="footer-links">
+                <a href="/" class="footer-link">Home</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="privacy.html" class="footer-link" style="color:var(--green)">Privacy Policy</a>
+                <a href="terms.html" class="footer-link">Terms & Conditions</a>
+            </div>
+        </footer>
+    </div>
+    <script>
+        (function() {
+            const c = document.getElementById('lightning');
+            const mk = () => {
+                const b = document.createElement('div'); b.className = 'bolt';
+                const h = 60 + Math.random() * 160;
+                b.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;height:${h}px;animation-duration:${1.5+Math.random()*3}s;animation-delay:${Math.random()*4}s`;
+                c.appendChild(b); setTimeout(() => b.remove(), (1.5 + Math.random() * 5) * 1000 + 500);
+            };
+            for (let i = 0; i < 6; i++) mk(); setInterval(mk, 1200);
+        })();
+    </script>
+</body>
+</html>
