@@ -45,15 +45,4 @@ A real-time, online multiplayer card battle game inspired by the classic Ben 10 
    npm start
    ```
 
-## ☁️ Production Deployment (Railway)
 
-This game is strictly designed to handle persistent state memory on cloud providers like Railway or Render. *(Do not deploy on Vercel as Serverless environments aggressively kill active WebSockets).*
-
-1. Push your repository to GitHub.
-2. Sign in to [Railway.app](https://railway.app/) and create a **New Project > Deploy from GitHub**.
-3. Select this repository.
-4. Go to the project **Variables** tab and set `MONGODB_URI` to your MongoDB Atlas connection string (Example: `mongodb+srv://user:pass@cluster.mongodb.net/cards?retryWrites=true&w=majority`).
-5. In the **Settings > Networking** tab, generate a public domain URL or attach your custom domain!
-
----
-*Created by Cosmics Software.*
